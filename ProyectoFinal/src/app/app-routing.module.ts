@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'sala/:link', component: SalaComponent },
   { path: 'sala', component: SalaComponent },
   { path: 'juego', component: CrearJuegoComponent },
   { path: 'propuesta', component: CrearPropuestaComponent },

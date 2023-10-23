@@ -1,5 +1,11 @@
 <app-header></app-header>
 
-<p>sala works!</p>
+<div *ngIf="!enSala">
+    <div>
+        <label for="nombre">Introduzca el codigo de la sala</label>
+        <input #codigo>
+    </div>
+    <button class="btn btn-danger" (click)="ingresar(codigo.value)"> Ingresar</button>
+</div>
 
 <app-footer></app-footer>

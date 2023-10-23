@@ -28,9 +28,6 @@ export class ControladorJuegosService {
 
   crearActividad(titulo: string, descripcion: string, imagen:string){
     let id = this.actividades.length + 1
-    if (imagen){
-      imagen = ""
-    }
     let actividad = {id, titulo, descripcion, imagen}
     this.actividades.push(actividad)
   }
@@ -55,5 +52,10 @@ export class ControladorJuegosService {
 
   listarJuegos(){
     return this.juegos;
+  }
+
+  getJuego(codigo:string){
+    let juego = this.juegos.find(x => x.codigo == codigo);
+    return juego?.link
   }
 }
