@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'juego', component: CrearJuegoComponent },
   { path: 'propuesta', component: CrearPropuestaComponent },
   { path: 'actividad', component: CrearActividadComponent },
+  { path: 'registrarse', component: LoginComponent },
 ];
 
 @NgModule({

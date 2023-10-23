@@ -1,0 +1,33 @@
+.loginBody{
+    margin-left: 10px;
+}
+
+.loginName {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+}
+
+.loginName label {
+    margin-right: 10px; /* Agrega un margen derecho para separar la etiqueta del input */
+}
+
+.loginPass {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+}
+
+.loginPass label {
+    margin-right: 65px; /* Agrega un margen derecho para separar la etiqueta del input */
+}
+
+input {
+    border-radius: 5px; /* Ajusta el valor según la cantidad de redondez que desees */
+    border: 1px solid black; /* Ancho, estilo (solid), color */
+}
+
+#loginButton{
+    margin-left: 275px;
+}
+

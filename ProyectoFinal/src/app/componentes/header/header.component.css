@@ -1,0 +1,37 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+    margin: 0; /* Añadir esto para eliminar el margen predeterminado */
+    padding: 0; /* Añadir esto para eliminar el relleno predeterminado */
+    margin-bottom: 30px;
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-start;
+    padding: 5px;
+}
+
+.menu button {
+    margin-right: 5px; /* Agrega un margen derecho de 10px a todos los botones */
+}
+
+.menu button:last-child {
+    margin-right: 0; /* Elimina el margen derecho del último botón */
+}
+
+
+.loger {
+    display: flex;
+    justify-content: space-between;
+}
+
+.loger button {
+    margin: auto;
+    margin-right: 5px; /* Agrega un margen derecho de 10px a todos los botones */
+}
+.loger button:last-child {
+    margin-right: 0; /* Elimina el margen derecho del último botón */
+}

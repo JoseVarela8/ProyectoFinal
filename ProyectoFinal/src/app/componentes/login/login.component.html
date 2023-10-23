@@ -1,19 +1,22 @@
 <app-header></app-header>
 
-<p>Login de Usuarios</p>
 
-<div>
-    <label for="nombre">Nombre de usuario</label>
-    <input #nombre>
+
+<div class="loginBody">
+    <h5>Login de Usuarios</h5>
+    <div class="loginName">
+        <label for="nombre">Nombre de usuario: </label>
+        <input #nombre>
+    </div>
+    
+    <div class="loginPass">
+        <label for="contraseña">Contraseña: </label>
+        <input #contrasenia>
+    </div>
+    
+    <button id="loginButton" type="button" class="btn btn-light" (click)="login(nombre.value, contrasenia.value)">login</button>
+    
+    <p> Falta modificar si toco Registrarse o Login interactue diferente, y aparezca boton login o boton register que haga un post</p>
 </div>
-
-<div>
-    <label for="contraseña">Contraseña</label>
-    <input #contrasenia>
-</div>
-
-<button type="button" (click)="login(nombre.value, contrasenia.value)">login</button>
-
-<p></p>
 
 <app-footer></app-footer>
