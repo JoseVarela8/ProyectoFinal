@@ -1,5 +1,19 @@
 <app-header></app-header>
 
-<p>login works!</p>
+<p>Login de Usuarios</p>
+
+<div>
+    <label for="nombre">Nombre de usuario</label>
+    <input #nombre>
+</div>
+
+<div>
+    <label for="contraseña">Contraseña</label>
+    <input #contrasenia>
+</div>
+
+<button type="button" (click)="login(nombre.value, contrasenia.value)">login</button>
+
+<p></p>
 
 <app-footer></app-footer>
