@@ -2,19 +2,19 @@
 
 
 
-<div class="loginBody">
-    <h5>Login de Usuarios</h5>
-    <div class="loginName">
+<div class="registerBody">
+    <h5>Registro de Usuarios</h5>
+    <div class="registerName">
         <label for="nombre">Nombre de usuario: </label>
         <input #nombre>
     </div>
     
-    <div class="loginPass">
+    <div class="registerPass">
         <label for="contraseña">Contraseña: </label>
         <input #contrasenia>
     </div>
     
-    <button id="loginButton" type="button" class="btn btn-light" (click)="login(nombre.value, contrasenia.value)">login</button>
+    <button id="registerButton" type="button" class="btn btn-light" (click)="register(nombre.value, contrasenia.value)">Sign Up</button>
     
 </div>
 

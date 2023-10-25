@@ -6,6 +6,7 @@ import { SalaComponent } from './componentes/sala/sala.component';
 import { CrearJuegoComponent } from './componentes/crear-juego/crear-juego.component';
 import { CrearPropuestaComponent } from './componentes/crear-propuesta/crear-propuesta.component';
 import { CrearActividadComponent } from './componentes/crear-actividad/crear-actividad.component';
+import { RegisterComponent } from './componentes/register/register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'juego', component: CrearJuegoComponent },
   { path: 'propuesta', component: CrearPropuestaComponent },
   { path: 'actividad', component: CrearActividadComponent },
-  { path: 'registrarse', component: LoginComponent },
+  { path: 'registrarse', component: RegisterComponent },
 ];
 
 @NgModule({

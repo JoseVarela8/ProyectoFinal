@@ -11,6 +11,7 @@ import { CrearActividadComponent } from './componentes/crear-actividad/crear-act
 import { SalaComponent } from './componentes/sala/sala.component';
 import { HeaderComponent } from './componentes/header/header.component';
 import { FooterComponent } from './componentes/footer/footer.component';
+import { RegisterComponent } from './componentes/register/register.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FooterComponent } from './componentes/footer/footer.component';
     SalaComponent,
     HeaderComponent,
     FooterComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,33 @@
+.registerBody{
+    margin-left: 10px;
+}
+
+.registerName {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+}
+
+.registerName label {
+    margin-right: 10px; /* Agrega un margen derecho para separar la etiqueta del input */
+}
+
+.registerPass {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+}
+
+.registerPass label {
+    margin-right: 65px; /* Agrega un margen derecho para separar la etiqueta del input */
+}
+
+input {
+    border-radius: 5px; /* Ajusta el valor según la cantidad de redondez que desees */
+    border: 1px solid black; /* Ancho, estilo (solid), color */
+}
+
+#registerButton{
+    margin-left: 253px;
+}
+
