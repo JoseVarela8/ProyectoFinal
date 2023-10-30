@@ -1,5 +1,23 @@
 <app-header></app-header>
 
-<p>crear-propuesta works!</p>
+<div>
+  <label for="nombre">Nombre de la propuesta: &nbsp;</label>
+  <input #nombre>
+</div>
 
+<ng-multiselect-dropdown
+  [placeholder]="'Seleccione las actividades de la propuesta'"
+  [settings]="dropdownSettings"
+  [data]="dropdownList"
+  [(ngModel)]="selectedItems"
+  
+>
+</ng-multiselect-dropdown>
+
+<p></p>
+
+<button class="btn btn-danger" (click)="crearPropuesta(nombre.value)">Crear Propuesta</button>
+
+
+<p></p>
 <app-footer></app-footer>

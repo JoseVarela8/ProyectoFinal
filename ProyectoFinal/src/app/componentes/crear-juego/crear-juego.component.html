@@ -1,5 +1,34 @@
 <app-header></app-header>
 
-<p>crear-juego works!</p>
+
+<div>
+    <label for="nombre">Nombre del juego: &nbsp;</label>
+    <input #nombre>
+</div>
+
+<div>
+    <label for="link">Link del juego: &nbsp;</label>
+    <input #link>
+</div>
+
+<div>
+    <label for="codigo">Codigo del juego: &nbsp;</label>
+    <input #codigo>
+</div>
+
+<p></p>
+
+<ng-multiselect-dropdown
+  [placeholder]="'Seleccione una propuesta'"
+  [settings]="dropdownSettings"
+  [data]="dropdownList"
+  [(ngModel)]="selectedItems"
+  
+>
+</ng-multiselect-dropdown>
+
+<p></p>
+
+<button class="btn btn-danger" (click)="crearJuego(nombre.value, link.value, codigo.value)">Crear Juego</button>
 
 <app-footer></app-footer>
