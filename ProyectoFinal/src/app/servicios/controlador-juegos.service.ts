@@ -8,7 +8,7 @@ import { Usuario } from '../clases/usuario';
   providedIn: 'root'
 })
 export class ControladorJuegosService {
-  juegos: Juego[] = [];
+  
   propuestas: Propuesta[] = [
 
     { id:1, nombre: 'propuesta 1', actividades:[
@@ -31,6 +31,11 @@ export class ControladorJuegosService {
     { id:4, titulo: 'actividad 4', descripcion: 'd', imagen:"imagen4" },
     { id:5, titulo: 'actividad 5', descripcion: 'e', imagen:"imagen5" },
   ];
+  juegos: Juego[] = [
+    { id:1, nombre: 'sala1', propuesta: this.propuestas[0], link:"1", codigo:"1234" }
+    //AGREGAR UN JUEGO/SALA
+  ];
+
   usuarios: Usuario[] = [
     { id:1, nombre: 'Nico', contrasenia: '1234'},
   ];
