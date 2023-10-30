@@ -22,6 +22,10 @@ export class ControladorJuegosService {
     this.usuarios.push(usuario)
   }
 
+  getUsuario(nombre: string, contrasenia: string){
+  //FALTA LOGICA PARA VERIFICAR SI EL USUARIO EXISTE
+  }
+
   listarUsuario(){
     return this.usuarios;
   }
@@ -47,7 +51,7 @@ export class ControladorJuegosService {
   }
   
   crearJuego(prop: Propuesta){
-    
+    //crear logica
   }
 
   listarJuegos(){

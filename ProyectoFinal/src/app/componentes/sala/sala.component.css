@@ -1,0 +1,32 @@
+.salaLogBody{
+    margin-left: 10px;
+}
+
+.salaCode {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+}
+
+.salaCode label {
+    margin-right: 10px; /* Agrega un margen derecho para separar la etiqueta del input */
+}
+
+.userName {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+}
+
+.userName label {
+    margin-right: 91px; /* Agrega un margen derecho para separar la etiqueta del input */
+}
+
+input {
+    border-radius: 5px; /* Ajusta el valor según la cantidad de redondez que desees */
+    border: 1px solid black; /* Ancho, estilo (solid), color */
+}
+
+#salaButton{
+    margin-left: 331px;
+}

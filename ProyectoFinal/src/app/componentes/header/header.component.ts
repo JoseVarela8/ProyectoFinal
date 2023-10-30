@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  usuarioAutenticado = false; // Inicialmente, el usuario no está autenticado
 }
