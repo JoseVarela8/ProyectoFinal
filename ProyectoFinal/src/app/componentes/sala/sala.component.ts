@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Juego } from 'src/app/clases/juego';
 import { ControladorJuegosService } from 'src/app/servicios/controlador-juegos.service';
 
 @Component({
@@ -9,7 +10,9 @@ import { ControladorJuegosService } from 'src/app/servicios/controlador-juegos.s
 })
 export class SalaComponent {
   linksala: String | undefined
+  linkAdmin: boolean = false
   enSala:boolean = false
+  SalasActivas : Juego[] = []
 
   constructor(private controlador:ControladorJuegosService, private router: Router,private route:ActivatedRoute){}
 
@@ -20,8 +23,12 @@ export class SalaComponent {
 
   ngOnInit(){
     this.linksala = this.route.snapshot.params['link'];
-    if(this.linksala != undefined){
+    if(this.linksala != undefined && this.linksala!="ADMIN"){
       this.enSala = true;
+    }
+    if(this.linksala == "ADMIN"){
+      this.linkAdmin=true
+      this.SalasActivas = this.controlador.listarJuegos()
     }
     console.log(this.linksala)
   }
