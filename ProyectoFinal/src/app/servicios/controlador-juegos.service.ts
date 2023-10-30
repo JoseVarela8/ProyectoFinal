@@ -32,7 +32,9 @@ export class ControladorJuegosService {
     { id:5, titulo: 'actividad 5', descripcion: 'e', imagen:"imagen5" },
   ];
   juegos: Juego[] = [
-    { id:1, nombre: 'sala1', propuesta: this.propuestas[0], link:"1", codigo:"1234" }
+    { id:1, nombre: 'sala1', propuesta: this.propuestas[0], link:"1", codigo:"1234" },
+    { id:2, nombre: 'sala2', propuesta: this.propuestas[1], link:"2", codigo:"12345" },
+    { id:3, nombre: 'sala3', propuesta: this.propuestas[1], link:"3", codigo:"123456" },
     //AGREGAR UN JUEGO/SALA
   ];
 
