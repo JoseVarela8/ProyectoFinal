@@ -9,8 +9,27 @@ import { Usuario } from '../clases/usuario';
 })
 export class ControladorJuegosService {
   juegos: Juego[] = [];
-  propuestas: Propuesta[] = [];
-  actividades: Actividad[] = [];
+  propuestas: Propuesta[] = [
+    { id:1, nombre: 'propuesta 1', actividades:[
+      { id:1, titulo: 'actividad 1', descripcion: 'a', imagen:"imagen1" },
+      { id:2, titulo: 'actividad 2', descripcion: 'b', imagen:"imagen2" },
+      { id:3, titulo: 'actividad 3', descripcion: 'c', imagen:"imagen3" },
+      ]
+    },
+    { id:2, nombre: 'propuesta 2', actividades:[
+      { id:3, titulo: 'actividad 3', descripcion: 'c', imagen:"imagen3" },
+      { id:4, titulo: 'actividad 4', descripcion: 'd', imagen:"imagen4" },
+      { id:5, titulo: 'actividad 5', descripcion: 'e', imagen:"imagen5" },
+      ]
+    },
+  ];
+  actividades: Actividad[] = [
+    { id:1, titulo: 'actividad 1', descripcion: 'a', imagen:"imagen1" },
+    { id:2, titulo: 'actividad 2', descripcion: 'b', imagen:"imagen2" },
+    { id:3, titulo: 'actividad 3', descripcion: 'c', imagen:"imagen3" },
+    { id:4, titulo: 'actividad 4', descripcion: 'd', imagen:"imagen4" },
+    { id:5, titulo: 'actividad 5', descripcion: 'e', imagen:"imagen5" },
+  ];
   usuarios: Usuario[] = [];
 
   constructor() { }
@@ -36,9 +55,9 @@ export class ControladorJuegosService {
     return this.actividades;
   }
 
-  crearPropuesta(actividades: Actividad[]){
+  crearPropuesta(actividades: Actividad[], nombre:string){
     let id = this.propuestas.length + 1
-    let propuesta = {id, actividades}
+    let propuesta = {id, nombre, actividades}
     this.propuestas.push(propuesta)
   }
 
@@ -46,7 +65,7 @@ export class ControladorJuegosService {
     return this.propuestas;
   }
   
-  crearJuego(prop: Propuesta){
+  crearJuego(prop: Propuesta, nombre:string, link:string, codigo:string){
     
   }
 
