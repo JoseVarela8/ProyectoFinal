@@ -1,14 +1,14 @@
 <div class="container">
     <div class="menu">
         <button class="btn btn-danger" [routerLink]="['/inicio']">Inicio</button>
-        <button class="btn btn-danger" [routerLink]="['/propuesta']">Crear Propuesta</button>
-        <button class="btn btn-danger" [routerLink]="['/actividad']">Crear Actividad</button>
-        <button class="btn btn-danger" [routerLink]="['/juego']">Crear Juego</button>
         <button class="btn btn-danger" [routerLink]="['/sala']">Salas</button>
+        <button class="btn btn-danger" [routerLink]="['/propuesta']" *ngIf="usuarioAutenticado">Crear Propuesta</button>
+        <button class="btn btn-danger" [routerLink]="['/actividad']" *ngIf="usuarioAutenticado">Crear Actividad</button>
+        <button class="btn btn-danger" [routerLink]="['/juego']" *ngIf="usuarioAutenticado">Crear Juego</button>
     </div>
     <div class="loger">
-        <button class="btn btn-danger" [routerLink]="['/login']">Login</button>
-        <button class="btn btn-danger" [routerLink]="['/registrarse']">Registrarse</button>
+        <button class="btn btn-danger" [routerLink]="['/login']" *ngIf="!usuarioAutenticado">Login</button>
+        <button class="btn btn-danger" [routerLink]="['/registrarse']" *ngIf="!usuarioAutenticado">Registrarse</button>
     </div>
 </div>
 
