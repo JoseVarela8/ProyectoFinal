@@ -9,6 +9,7 @@
     <div class="loger">
         <button class="btn btn-danger" [routerLink]="['/login']" *ngIf="!usuarioAutenticado">Login</button>
         <button class="btn btn-danger" [routerLink]="['/registrarse']" *ngIf="!usuarioAutenticado">Registrarse</button>
+        <button class="btn btn-danger" (click)="salir()" *ngIf="usuarioAutenticado">Salir</button>
     </div>
 </div>
 
