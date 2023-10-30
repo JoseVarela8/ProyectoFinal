@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ControladorJuegosService } from 'src/app/servicios/controlador-juegos.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { ControladorJuegosService } from 'src/app/servicios/controlador-juegos.s
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private controlador:ControladorJuegosService){}
+  constructor(private controlador:ControladorJuegosService, private router:Router){}
   /*  
   login(nombre:string, contrasenia:string){
     this.controlador.crearUsuario(nombre,contrasenia)
@@ -16,12 +17,16 @@ export class LoginComponent {
   */
 
   login(usuario: string, contrasenia: string) {
-    // Lógica de inicio de sesión aquí...
-    let inicioDeSesionExitoso = true
-    // Si el inicio de sesión es exitoso, muestra un mensaje en la consola
-    if (inicioDeSesionExitoso) {
+
+    let check = this.controlador.getUsuario(usuario, contrasenia);
+    if (check){
       console.log('Inicio de sesión exitoso');
+      this.router.navigate(["inicio"]);
     }
+    else{
+      console.log("Fallo Login, ese usuario no existe");
+    }
+
   }
 }
 

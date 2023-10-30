@@ -10,6 +10,7 @@ import { Usuario } from '../clases/usuario';
 export class ControladorJuegosService {
   juegos: Juego[] = [];
   propuestas: Propuesta[] = [
+
     { id:1, nombre: 'propuesta 1', actividades:[
       { id:1, titulo: 'actividad 1', descripcion: 'a', imagen:"imagen1" },
       { id:2, titulo: 'actividad 2', descripcion: 'b', imagen:"imagen2" },
@@ -30,7 +31,10 @@ export class ControladorJuegosService {
     { id:4, titulo: 'actividad 4', descripcion: 'd', imagen:"imagen4" },
     { id:5, titulo: 'actividad 5', descripcion: 'e', imagen:"imagen5" },
   ];
-  usuarios: Usuario[] = [];
+  usuarios: Usuario[] = [
+    { id:1, nombre: 'Nico', contrasenia: '1234'},
+  ];
+  logueado: boolean = false;
 
   constructor() { }
 
@@ -42,8 +46,15 @@ export class ControladorJuegosService {
   }
 
   getUsuario(nombre: string, contrasenia: string){
-  //FALTA LOGICA PARA VERIFICAR SI EL USUARIO EXISTE
-  }
+    const encontro = this.usuarios.find(({nombre,contrasenia}) => nombre == nombre && contrasenia == contrasenia); 
+    if (encontro!=null){
+      this.logueado=true;
+      return true
+    }
+    else{
+      return false
+    }
+   }
 
   listarUsuario(){
     return this.usuarios;
@@ -81,4 +92,13 @@ export class ControladorJuegosService {
     let juego = this.juegos.find(x => x.codigo == codigo);
     return juego?.link
   }
+
+  checkAdminInit(){
+    return this.logueado;
+  }
+
+  desloguearse(){
+    this.logueado = false;
+  }
+
 }
