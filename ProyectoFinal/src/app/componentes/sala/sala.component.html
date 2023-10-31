@@ -12,13 +12,13 @@
     <button id="salaButton" class="btn btn-danger" (click)="ingresar(codigo.value)"> Ingresar</button>
 </div>
 
-<div class="selectSala" *ngIf="!enSala AND linkAdmin">
+<div class="selectSala" *ngIf="!enSala && linkAdmin">
     <div *ngFor="let Juego of SalasActivas">
         <button class="btn btn-danger" (click)="irsala(Juego.link)">{{ Juego.nombre }}</button>
     </div>
 </div>
 
-<div class="selectSala" *ngIf="enSala AND linkAdmin">
+<div class="selectSala2" *ngIf="enSala && linkAdmin">
     <p> admin y en sala</p>
 </div>
 

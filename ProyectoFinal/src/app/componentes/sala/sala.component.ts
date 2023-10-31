@@ -23,21 +23,22 @@ export class SalaComponent {
 
   ngOnInit(){
     this.linksala = this.route.snapshot.params['link'];
-    if(this.linksala != undefined && this.linksala!="ADMIN"){
+    if(this.linksala != undefined && this.linksala !="ADMIN"){
       this.enSala = true;
       if(this.controlador.checkAdminInit()){
-        this.linkAdmin=true
+        this.linkAdmin=true;
       } 
     }
     if(this.linksala == "ADMIN"){
-      this.linkAdmin=true
+      this.linkAdmin=true;
       this.SalasActivas = this.controlador.listarJuegos()
     }
-    console.log(this.linksala)
   }
 
   irsala(link:any){
-    this.router.navigate(["/sala",link]);
-    this.ngOnInit();
+    this.router.navigate(["/sala",link])
+    .then(() => {
+      this.ngOnInit();
+    });
   }
 }
