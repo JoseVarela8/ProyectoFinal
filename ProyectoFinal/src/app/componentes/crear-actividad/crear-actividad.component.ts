@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ControladorJuegosService } from 'src/app/servicios/controlador-juegos.service';
 
 @Component({
@@ -8,10 +9,10 @@ import { ControladorJuegosService } from 'src/app/servicios/controlador-juegos.s
 })
 export class CrearActividadComponent {
 
-  constructor(private controlador:ControladorJuegosService){}
+  constructor(private controlador:ControladorJuegosService, private router:Router){}
 
   Actividad(titulo: string, descripcion: string, imagen:string){
     this.controlador.crearActividad(titulo,descripcion,imagen)
-    console.log(this.controlador.listarActividades())
+    this.router.navigate(["/inicio"])
   }
 }

@@ -88,7 +88,9 @@ export class ControladorJuegosService {
   }
   
   crearJuego(prop: Propuesta, nombre:string, link:string, codigo:string){
-    
+    let id = this.juegos.length + 1
+    let juego = {id, nombre: nombre, propuesta: prop, link, codigo}
+    this.juegos.push(juego)
   }
 
   listarJuegos(){
@@ -98,6 +100,11 @@ export class ControladorJuegosService {
   getJuego(codigo:string){
     let juego = this.juegos.find(x => x.codigo == codigo);
     return juego?.link
+  }
+
+  getJuego2(link:string){
+    let juego = this.juegos.find(x => x.link == link);
+    return juego
   }
 
   checkAdminInit(){

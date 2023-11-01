@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ControladorJuegosService } from 'src/app/servicios/controlador-juegos.service';
 
@@ -12,7 +13,7 @@ export class CrearJuegoComponent {
   selectedItems: any = [];
   dropdownSettings:IDropdownSettings = {};
 
-  constructor(private controlador:ControladorJuegosService){}
+  constructor(private controlador:ControladorJuegosService, private router:Router){}
 
   ngOnInit() {
     this.dropdownList = this.controlador.listarPropuestas();
@@ -31,7 +32,7 @@ export class CrearJuegoComponent {
   }
 
   crearJuego(nombre:string, link:string, codigo:string) {
-    console.log(this.selectedItems);
     this.controlador.crearJuego(this.selectedItems, nombre, link, codigo)
+    this.router.navigate(["/inicio"])
   }
 }

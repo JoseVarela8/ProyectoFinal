@@ -7,7 +7,8 @@
 </div>
 
 <div *ngIf="enSala">
-    <p>Admin en sala</p>
+    <p>{{SalaActiva.codigo}}</p>
+    <button class="btn btn-danger" (click)="empezarJuego()">Empezar Juego</button>
 </div>
 
 <app-footer></app-footer>

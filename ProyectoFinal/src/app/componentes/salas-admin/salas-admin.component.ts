@@ -12,6 +12,7 @@ export class SalasAdminComponent {
   SalasActivas : Juego[] = []
   enSala: boolean = false
   linksala: string = ""
+  SalaActiva: Juego = new Juego
   
   constructor(private controlador:ControladorJuegosService, private router: Router, private route:ActivatedRoute){}
 
@@ -19,6 +20,10 @@ export class SalasAdminComponent {
     this.linksala = this.route.snapshot.params['link'];
     if(this.linksala != undefined){
       this.enSala = true;
+      let variable = this.controlador.getJuego2(this.linksala)
+      if (variable != null){
+        this.SalaActiva = variable
+      }
     } else{
       this.SalasActivas = this.controlador.listarJuegos()
     }
@@ -29,5 +34,9 @@ export class SalasAdminComponent {
     .then(() => {
       this.ngOnInit();
     });
+  }
+
+  empezarJuego(){
+    //Ni idea que hacer aca para que empieze.
   }
 }
