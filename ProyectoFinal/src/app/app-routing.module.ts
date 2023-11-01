@@ -7,11 +7,14 @@ import { CrearJuegoComponent } from './componentes/crear-juego/crear-juego.compo
 import { CrearPropuestaComponent } from './componentes/crear-propuesta/crear-propuesta.component';
 import { CrearActividadComponent } from './componentes/crear-actividad/crear-actividad.component';
 import { RegisterComponent } from './componentes/register/register.component';
+import { SalasAdminComponent } from './componentes/salas-admin/salas-admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'salasadmin', component: SalasAdminComponent },
+  { path: 'salasadmin/:link', component: SalasAdminComponent },
   { path: 'sala/:link', component: SalaComponent },
   { path: 'sala', component: SalaComponent },
   { path: 'juego', component: CrearJuegoComponent },

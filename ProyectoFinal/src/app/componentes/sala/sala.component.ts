@@ -10,12 +10,11 @@ import { ControladorJuegosService } from 'src/app/servicios/controlador-juegos.s
 })
 export class SalaComponent implements OnInit{
   linksala: String | undefined
-  linkAdmin: boolean = false
   enSala:boolean = false
   SalasActivas : Juego[] = []
 
 
-  constructor(private controlador:ControladorJuegosService, private router: Router,private route:ActivatedRoute){}
+  constructor(private controlador:ControladorJuegosService, private router: Router, private route:ActivatedRoute){}
 
   ingresar(codigo:string){
     let link = this.controlador.getJuego(codigo);
@@ -24,24 +23,8 @@ export class SalaComponent implements OnInit{
 
   ngOnInit(){
     this.linksala = this.route.snapshot.params['link'];
-    if(this.linksala != undefined && this.linksala !="ADMIN"){
-      console.log("aca")
+    if(this.linksala != undefined){
       this.enSala = true;
-      if(this.controlador.checkAdminInit()){
-        this.linkAdmin=true;
-      } 
     }
-    if(this.linksala == "ADMIN"){
-      console.log("aca2")
-      this.linkAdmin=true;
-      this.SalasActivas = this.controlador.listarJuegos()
-    }
-  }
-
-  irsala(link:any){
-    this.router.navigate(["/sala",link])
-    .then(() => {
-      this.ngOnInit();
-    });
   }
 }

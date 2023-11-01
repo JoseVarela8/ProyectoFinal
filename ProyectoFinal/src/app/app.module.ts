@@ -15,6 +15,7 @@ import { RegisterComponent } from './componentes/register/register.component';
 
 import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { SalasAdminComponent } from './componentes/salas-admin/salas-admin.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     HeaderComponent,
     FooterComponent,
     RegisterComponent,
+    SalasAdminComponent,
   ],
   imports: [
     BrowserModule,

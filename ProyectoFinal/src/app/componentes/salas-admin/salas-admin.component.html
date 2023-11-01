@@ -1,0 +1,13 @@
+<app-header></app-header>
+
+<div *ngIf="!enSala">
+    <div *ngFor="let Juego of SalasActivas">
+        <button class="btn btn-danger" (click)="irsala(Juego.link)">{{ Juego.nombre }}</button>
+    </div>
+</div>
+
+<div *ngIf="enSala">
+    <p>Admin en sala</p>
+</div>
+
+<app-footer></app-footer>

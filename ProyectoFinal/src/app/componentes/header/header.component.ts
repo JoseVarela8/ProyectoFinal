@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ControladorJuegosService } from 'src/app/servicios/controlador-juegos.service';
 import { SalaComponent } from '../sala/sala.component';
 
@@ -9,7 +9,7 @@ import { SalaComponent } from '../sala/sala.component';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private controlador:ControladorJuegosService, private router:Router){} //private sala:SalaComponent
+  constructor(private controlador:ControladorJuegosService, private router:Router, private route:ActivatedRoute){} 
 
   ngOnInit(){
     this.usuarioAutenticado = this.controlador.checkAdminInit()
@@ -21,17 +21,5 @@ export class HeaderComponent {
     this.controlador.desloguearse();
     this.router.navigate(["inicio"]);
     this.ngOnInit();
-  }
-
-  irsalas(ADMIN:string){
-    this.router.navigate(["/sala",ADMIN])
-    .then((data) => {
-      console.log("d",data);
-      //this.sala.ngOnInit();
-    }).catch((error)=>{
-      console.log(error)
-    });
-
-
   }
 }

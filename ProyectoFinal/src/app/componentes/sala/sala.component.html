@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<div class="salaLogBody" *ngIf="!enSala && !linkAdmin" >
+<div class="salaLogBody" *ngIf="!enSala" >
     <div class="salaCode">
         <label for="salaCode">Introduzca el codigo de la sala: </label>
         <input #codigo>
@@ -12,14 +12,9 @@
     <button id="salaButton" class="btn btn-danger" (click)="ingresar(codigo.value)"> Ingresar</button>
 </div>
 
-<div class="selectSala" *ngIf="!enSala && linkAdmin">
-    <div *ngFor="let Juego of SalasActivas">
-        <button class="btn btn-danger" (click)="irsala(Juego.link)">{{ Juego.nombre }}</button>
-    </div>
-</div>
 
-<div class="selectSala2" *ngIf="enSala && linkAdmin">
-    <p> admin y en sala</p>
+<div class="selectSala2" *ngIf="enSala">
+    <p> anonimo en sala</p>
 </div>
 
 
