@@ -2,7 +2,7 @@
     <div class="menu">
         <button class="btn btn-danger" [routerLink]="['/inicio']">Inicio</button>
         <button class="btn btn-danger" [routerLink]="['/sala']" *ngIf="!usuarioAutenticado">Salas</button>
-        <button class="btn btn-danger" [routerLink]="['/sala','ADMIN']" *ngIf="usuarioAutenticado" >Salas</button>
+        <button class="btn btn-danger" (click)="irsalas('ADMIN')" *ngIf="usuarioAutenticado" >SalasADMIN</button>
         <button class="btn btn-danger" [routerLink]="['/propuesta']" *ngIf="usuarioAutenticado">Crear Propuesta</button>
         <button class="btn btn-danger" [routerLink]="['/actividad']" *ngIf="usuarioAutenticado">Crear Actividad</button>
         <button class="btn btn-danger" [routerLink]="['/juego']" *ngIf="usuarioAutenticado">Crear Juego</button>
