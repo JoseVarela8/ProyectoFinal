@@ -3,11 +3,18 @@ import { Juego } from '../clases/juego';
 import { Propuesta } from '../clases/propuesta';
 import { Actividad } from '../clases/actividad';
 import { Usuario } from '../clases/usuario';
+import { HttpClient } from '@angular/common/http';
+import {CookieService} from "ngx-cookie-service";
+import { Sha512Service } from './cripto/sha512.service';
+import { TokenResponse } from '../models/TokenResponse';
+import { crearActividadResponse } from '../models/crearActividadResponse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ControladorJuegosService {
+
+  API_ENDPOINT:string = "https://www.desarrollowebback.duckdns.org/api/";
   
   propuestas: Propuesta[] = [
 
@@ -43,8 +50,17 @@ export class ControladorJuegosService {
   ];
   logueado: boolean = false;
 
-  constructor() { }
+  token: string = ""
 
+  constructor(private http:HttpClient, private  cookie:CookieService, private sha:Sha512Service) { }
+
+  setToken(token:string){
+    this.token = token;
+  }
+
+  getToken(){
+    return this.token;
+  }
 
   crearUsuario(nombre: string, contrasenia: string){
     let id = this.usuarios.length + 1;
@@ -67,10 +83,24 @@ export class ControladorJuegosService {
     return this.usuarios;
   }
 
+  
+
   crearActividad(titulo: string, descripcion: string, imagen:string){
-    let id = this.actividades.length + 1
+    /*let id = this.actividades.length + 1
     let actividad = {id, titulo, descripcion, imagen}
-    this.actividades.push(actividad)
+    this.actividades.push(actividad)*/
+    console.log("Cookie: ",this.cookie.get(this.sha.EncryptSHA512("token")));
+    let ending = "actividades/crearactividad";
+    let header = {
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`,
+      'Content-Type': 'application/json'
+    }
+    const body = {
+      "titulo": `${titulo}`,
+      "descripcion": `${descripcion}`
+    };
+    return this.http.post<crearActividadResponse>(this.API_ENDPOINT+ending, body,{ headers: header});
   }
 
   listarActividades(){
@@ -105,6 +135,10 @@ export class ControladorJuegosService {
   getJuego2(link:string){
     let juego = this.juegos.find(x => x.link == link);
     return juego
+  }
+
+  logeado(){
+    this.logueado = true;
   }
 
   checkAdminInit(){

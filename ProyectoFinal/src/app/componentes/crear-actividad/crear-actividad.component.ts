@@ -12,7 +12,9 @@ export class CrearActividadComponent {
   constructor(private controlador:ControladorJuegosService, private router:Router){}
 
   Actividad(titulo: string, descripcion: string, imagen:string){
-    this.controlador.crearActividad(titulo,descripcion,imagen)
+    this.controlador.crearActividad(titulo,descripcion,imagen).subscribe(data =>{
+      alert(data.mensaje)
+    });
     this.router.navigate(["/inicio"])
   }
 }

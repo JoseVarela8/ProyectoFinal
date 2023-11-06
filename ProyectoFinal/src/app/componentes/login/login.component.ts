@@ -23,6 +23,7 @@ export class LoginComponent {
     this.auth.obtenerTokenAdmin(usuario,contrasenia).subscribe(data =>{
       this.cookie.set(this.sha.EncryptSHA512("token"),this.sha.EncryptSHA512(data.token));
       alert(`Token: ${data.token}`);
+      this.controlador.logeado()
     });
     /*
     let check = this.controlador.getUsuario(usuario, contrasenia);
