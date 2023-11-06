@@ -15,7 +15,11 @@ import { RegisterComponent } from './componentes/register/register.component';
 
 import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {AuthService} from "./servicios/auth/auth.service";
+import { HttpClientModule} from "@angular/common/http";
 import { SalasAdminComponent } from './componentes/salas-admin/salas-admin.component';
+import {Sha512Service} from "./servicios/cripto/sha512.service";
+import {CookieService} from "ngx-cookie-service";
 
 @NgModule({
   declarations: [
@@ -35,9 +39,14 @@ import { SalasAdminComponent } from './componentes/salas-admin/salas-admin.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    CookieService,
+    Sha512Service
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

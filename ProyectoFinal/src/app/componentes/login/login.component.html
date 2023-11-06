@@ -8,14 +8,14 @@
         <label for="nombre">Nombre de usuario: </label>
         <input #nombre>
     </div>
-    
+
     <div class="loginPass">
         <label for="contraseña">Contraseña: </label>
-        <input #contrasenia>
+        <input type="password" #contrasenia>
     </div>
-    
+
     <button id="loginButton" type="button" class="btn btn-light" (click)="login(nombre.value, contrasenia.value)">login</button>
-    
+
 </div>
 
 <app-footer></app-footer>
