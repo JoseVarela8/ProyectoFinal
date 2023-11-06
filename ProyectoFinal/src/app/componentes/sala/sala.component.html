@@ -13,5 +13,31 @@
     <p> Entraste a la sala  "{{SalaActiva.nombre}}" espere a que administrador inicie el juego</p>
 </div>
 
+<div *ngIf="empezo">
+    <div *ngFor="let Actividad of Actividades">
+        <div class="card" *ngIf="Actividades[contador] == Actividad">
+            <div class="card-body">
+                <h5 class="card-title">{{Actividad.titulo}}</h5>
+                <p class="card-text">{{Actividad.descripcion}}</p>
+                <button type="button" class="btn btn-primary" (click)="votarMegusta()">Me gusta</button>
+                <span>&nbsp;</span>
+                <button type="button" class="btn btn-primary" (click)="votarMedaigual()">Me da igual</button>
+                <span>&nbsp;</span>
+                <button type="button" class="btn btn-primary" (click)="votarNoMegusta()">No me gusta</button>
+            </div>
+        </div>
+    </div>
+    <div class="card" *ngIf="contador == Actividades.length">
+        <div *ngFor="let Actividad of Actividades; index as i">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{Actividad.titulo}}</h5>
+                    <p class="card-text">{{Actividad.descripcion}}</p>
+                    <p class="card-text">Puntaje: {{Puntaje[i]}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <app-footer></app-footer>
