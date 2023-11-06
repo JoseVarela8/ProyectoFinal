@@ -8,6 +8,7 @@ import {CookieService} from "ngx-cookie-service";
 import { Sha512Service } from './cripto/sha512.service';
 import { TokenResponse } from '../models/TokenResponse';
 import { crearActividadResponse } from '../models/crearActividadResponse';
+import { AuthService } from './auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +53,7 @@ export class ControladorJuegosService {
 
   token: string = ""
 
-  constructor(private http:HttpClient, private  cookie:CookieService, private sha:Sha512Service) { }
+  constructor(private http:HttpClient, private  cookie:CookieService, private sha:Sha512Service, private auth:AuthService) { }
 
   setToken(token:string){
     this.token = token;
