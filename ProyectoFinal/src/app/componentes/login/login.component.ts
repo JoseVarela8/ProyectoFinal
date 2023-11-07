@@ -21,7 +21,7 @@ export class LoginComponent {
 
   login(usuario: string, contrasenia: string) {
     this.auth.obtenerTokenAdmin(usuario,contrasenia).subscribe(data =>{
-      this.cookie.set(this.sha.EncryptSHA512("token"),this.sha.EncryptSHA512(data.token));
+      this.cookie.set(this.sha.EncryptSHA512("token"), data.token);  //this.sha.EncryptSHA512(data.token)
       alert(`Token: ${data.token}`);
       this.controlador.logeado()
     });

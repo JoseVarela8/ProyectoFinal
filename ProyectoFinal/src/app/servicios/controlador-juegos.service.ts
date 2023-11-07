@@ -96,7 +96,7 @@ export class ControladorJuegosService {
       'accept': '*/*',
       'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`,
       'Content-Type': 'application/json'
-    }
+    } 
     const body = {
       "titulo": `${titulo}`,
       "descripcion": `${descripcion}`
