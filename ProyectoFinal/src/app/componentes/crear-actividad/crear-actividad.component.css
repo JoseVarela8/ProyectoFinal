@@ -1,0 +1,42 @@
+.actividadBody{
+    margin-left: 10px;
+}
+
+.actividadName {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+}
+
+.actividadName label {
+    margin-right: 48px; /* Agrega un margen derecho para separar la etiqueta del input */
+}
+
+.actividadDescripcion {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+}
+
+.actividadDescripcion label {
+    margin-right: 5px; /* Agrega un margen derecho para separar la etiqueta del input */
+}
+
+.actividadImagen {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+}
+
+.actividadImagen label {
+    margin-right: 34px; /* Agrega un margen derecho para separar la etiqueta del input */
+}
+
+input {
+    border-radius: 5px; /* Ajusta el valor según la cantidad de redondez que desees */
+    border: 1px solid black; /* Ancho, estilo (solid), color */
+}
+
+#actividadButton{
+    margin-left: 315px;
+}

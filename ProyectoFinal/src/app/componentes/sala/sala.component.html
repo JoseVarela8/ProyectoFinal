@@ -8,12 +8,11 @@
     <button id="salaButton" class="btn btn-danger" (click)="ingresar(codigo.value)"> Ingresar</button>
 </div>
 
-
 <div class="selectSala2" *ngIf="enSala">
     <p> Entraste a la sala  "{{SalaActiva.nombre}}" espere a que administrador inicie el juego</p>
 </div>
 
-<div *ngIf="empezo">
+<div *ngIf="enSala && empezo">
     <div *ngFor="let Actividad of Actividades">
         <div class="card" *ngIf="Actividades[contador] == Actividad">
             <div class="card-body">
@@ -24,6 +23,7 @@
                 <button type="button" class="btn btn-primary" (click)="votarMedaigual()">Me da igual</button>
                 <span>&nbsp;</span>
                 <button type="button" class="btn btn-primary" (click)="votarNoMegusta()">No me gusta</button>
+                {{display}}
             </div>
         </div>
     </div>

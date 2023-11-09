@@ -1,34 +1,36 @@
 <app-header></app-header>
 
+<div class="salaBody">
+    <h5>Crear Sala</h5>
+    <div class="salaName">
+        <label for="nombre">Nombre de la sala:</label>
+        <input #nombre>
+    </div>
 
-<div>
-    <label for="nombre">Nombre del juego: &nbsp;</label>
-    <input #nombre>
-</div>
+    <div class="salaLink">
+        <label for="descripcion">Link de la sala:</label>
+        <input #link>
+    </div>
 
-<div>
-    <label for="link">Link del juego: &nbsp;</label>
-    <input #link>
-</div>
+    <div class="salaCodigo">
+        <label for="imagen">Codigo de la sala:</label>
+        <input #codigo>
+    </div>
 
-<div>
-    <label for="codigo">Codigo del juego: &nbsp;</label>
-    <input #codigo>
 </div>
 
 <p></p>
 
-<ng-multiselect-dropdown
+<ng-multiselect-dropdown id="listar"
   [placeholder]="'Seleccione una propuesta'"
   [settings]="dropdownSettings"
   [data]="dropdownList"
   [(ngModel)]="selectedItems"
-  
 >
 </ng-multiselect-dropdown>
 
 <p></p>
 
-<button class="btn btn-danger" (click)="crearJuego(nombre.value, link.value, codigo.value)">Crear Juego</button>
+<button id="salaButton" class="btn btn-danger" (click)="crearJuego(nombre.value, link.value, codigo.value)">Crear Juego</button>
 
 <app-footer></app-footer>

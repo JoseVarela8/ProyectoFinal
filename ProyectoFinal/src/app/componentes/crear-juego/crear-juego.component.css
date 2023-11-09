@@ -1,0 +1,77 @@
+.salaBody{
+    margin-left: 10px;
+}
+
+.salaName {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+}
+
+.salaName label {
+    margin-right: 10px; /* Agrega un margen derecho para separar la etiqueta del input */
+}
+
+.salaLink {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+}
+
+.salaLink label {
+    margin-right: 40px; /* Agrega un margen derecho para separar la etiqueta del input */
+}
+
+.salaCodigo {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+}
+
+.salaCodigo label {
+    margin-right: 17px; /* Agrega un margen derecho para separar la etiqueta del input */
+}
+
+input {
+    border-radius: 5px; /* Ajusta el valor según la cantidad de redondez que desees */
+    border: 1px solid black; /* Ancho, estilo (solid), color */
+}
+
+#salaButton{
+    margin-left: 350px;
+}
+
+:host ::ng-deep ng-multiselect-dropdown {             /* div.multiselect-dropdown */
+    color: #fff !important;
+    background-color: #dc3545 !important; 
+    border-color: #dc3545 !important;
+    padding-bottom: 5px;
+    margin-left: 10px;
+    max-width: 330px;
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+}
+
+:host ::ng-deep .multiselect-dropdown .dropdown-btn{
+    border: 0px solid red !important;
+}
+
+:host ::ng-deep .multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret:before {
+    border-color: #fff transparent !important;         /* flecha poner 2 colores a la vez para que ande*/
+}
+
+:host::ng-deep.selected-item {     /* item seleccionado */
+    background: #dc3545 !important; 
+    color: #fff !important;
+    border: 1px solid #fff !important;
+}
+    
+:host::ng-deep ng-multiselect-dropdown .multiselect-item-checkbox input[type=checkbox] + div:before {
+border: 2px solid #dc3545 !important;       /*borde checkbox del dropdown*/
+}
+    
+:host::ng-deep ng-multiselect-dropdown .multiselect-item-checkbox input[type=checkbox]:checked + div:before {
+    background: #dc3545 !important;        /*fondo checkbox del dropdown*/
+}
+
+
