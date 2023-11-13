@@ -18,15 +18,28 @@
             <div class="card-body">
                 <h5 class="card-title">{{Actividad.titulo}}</h5>
                 <p class="card-text">{{Actividad.descripcion}}</p>
-                <button type="button" class="btn btn-primary" (click)="votarMegusta()">Me gusta</button>
+                <button type="button" class="btn btn-danger" (click)="votarMegusta()">Me gusta</button>
                 <span>&nbsp;</span>
-                <button type="button" class="btn btn-primary" (click)="votarMedaigual()">Me da igual</button>
+                <button type="button" class="btn btn-danger" (click)="votarMedaigual()">Me da igual</button>
                 <span>&nbsp;</span>
-                <button type="button" class="btn btn-primary" (click)="votarNoMegusta()">No me gusta</button>
+                <button type="button" class="btn btn-danger" (click)="votarNoMegusta()">No me gusta</button>
                 {{display}}
             </div>
         </div>
     </div>
+    <div class="card" *ngIf="contador == Actividades.length">
+        <h5>Ganaron las actividades:</h5>
+        <div *ngFor="let Actividad of mayorPuntaje(); index as i">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{Actividad.titulo}}</h5>
+                    <p class="card-text">{{Actividad.descripcion}}</p>
+                    <p class="card-text">Puntaje: {{Puntaje[i]}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h5 *ngIf="contador == Actividades.length">Resultados:</h5>
     <div class="card" *ngIf="contador == Actividades.length">
         <div *ngFor="let Actividad of Actividades; index as i">
             <div class="card">

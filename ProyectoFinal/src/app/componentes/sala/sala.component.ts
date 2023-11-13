@@ -20,6 +20,7 @@ export class SalaComponent implements OnInit{
   empezo: boolean = true
   contador = 0;
   Puntaje: number[] = []
+  MayorPuntaje: number = 0;
 
   constructor(private controlador:ControladorJuegosService, private router: Router, private route:ActivatedRoute){}
 
@@ -46,6 +47,27 @@ export class SalaComponent implements OnInit{
       }
     }
   }
+
+  mayorPuntaje(){
+    let actGanadoras = []
+    let j = this.Puntaje.length
+    let MPuntaje = 0
+    while (j >= 0){
+      if(this.Puntaje[j] > MPuntaje){
+        actGanadoras =[]
+        actGanadoras.push(this.Actividades[j])
+        MPuntaje = this.Puntaje[j]
+      } else {
+        if (this.Puntaje[j] == MPuntaje){
+          actGanadoras.push(this.Actividades[j])
+        }
+      }
+      j = j-1;
+    }
+    actGanadoras = actGanadoras.reverse()
+    return actGanadoras
+  }
+
 
   votarMegusta(){
     this.timer(30);
