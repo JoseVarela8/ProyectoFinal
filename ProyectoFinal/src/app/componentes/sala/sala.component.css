@@ -53,7 +53,24 @@ input {
     margin-bottom: 20px; /* Ajusta el valor según la separación deseada */
   }  
 
-  #activityResult{
+  .activityResult{
     background-color: transparent;
     border: solid transparent;
+  }
+  .cardWinner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 0 auto;
+    width: 80%; /* Ajusta el ancho según tus preferencias */
+    max-width: 600px; /* Establece un ancho máximo para mantener la responsividad */
+    margin-bottom: 20px; /* Ajusta el valor según la separación deseada */
+    background-color: rgb(122, 231, 126);
+  }
+  .timer{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
   }
