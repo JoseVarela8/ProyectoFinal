@@ -1,3 +1,13 @@
+.selectSala2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered-text {
+    text-align: center;
+}
+
 .salaLogBody{
     margin-left: 10px;
 }
@@ -30,3 +40,20 @@ input {
 #salaButton{
     margin-left: 331px;
 }
+
+.cardConainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 0 auto;
+    width: 80%; /* Ajusta el ancho según tus preferencias */
+    max-width: 600px; /* Establece un ancho máximo para mantener la responsividad */
+    margin-bottom: 20px; /* Ajusta el valor según la separación deseada */
+  }  
+
+  #activityResult{
+    background-color: transparent;
+    border: solid transparent;
+  }
