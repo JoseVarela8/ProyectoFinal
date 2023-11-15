@@ -65,7 +65,14 @@ export class SalaComponent implements OnInit{
       j = j-1;
     }
     actGanadoras = actGanadoras.reverse()
-    return actGanadoras
+    if (actGanadoras.length >1){
+      let actGanadora =[]
+      actGanadora.push (actGanadoras[0])
+      return actGanadora
+    }
+    else{
+      return actGanadoras
+    }
   }
 
 
