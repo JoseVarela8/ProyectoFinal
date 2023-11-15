@@ -111,7 +111,9 @@ export class SalaComponent implements OnInit{
       if (seconds == 0) {
         console.log("finished");
         clearInterval(timer);
-        this.votarMedaigual();
+        if (this.contador < this.Actividades.length){
+          this.votarMedaigual();
+        }
       }
     }, 1000);
   }

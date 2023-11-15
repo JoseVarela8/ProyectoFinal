@@ -6,6 +6,8 @@
         <button class="btn btn-danger" [routerLink]="['/propuesta']" *ngIf="usuarioAutenticado">Crear Propuesta</button>
         <button class="btn btn-danger" [routerLink]="['/actividad']" *ngIf="usuarioAutenticado">Crear Actividad</button>
         <button class="btn btn-danger" [routerLink]="['/juego']" *ngIf="usuarioAutenticado">Crear Sala</button>
+        <button class="btn btn-danger" [routerLink]="['/actividades']" *ngIf="usuarioAutenticado">Mostrar Actividades</button>
+        <button class="btn btn-danger" [routerLink]="['/propuestas']" *ngIf="usuarioAutenticado">Mostrar Propuestas</button>
     </div>
     <div class="loger">
         <button class="btn btn-danger" [routerLink]="['/login']" *ngIf="!usuarioAutenticado">Login</button>

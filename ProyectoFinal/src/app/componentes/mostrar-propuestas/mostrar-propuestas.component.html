@@ -1,0 +1,15 @@
+<app-header></app-header>
+
+<div *ngFor="let propuesta of Propuestas">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{propuesta.nombre}}</h5>
+            <div *ngFor="let actividad of propuesta.actividades">
+                <p class="card-text">{{actividad.titulo}}</p>
+            </div>
+            <!-- Imagen-->
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

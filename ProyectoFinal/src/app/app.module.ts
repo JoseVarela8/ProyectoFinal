@@ -20,6 +20,8 @@ import { HttpClientModule} from "@angular/common/http";
 import { SalasAdminComponent } from './componentes/salas-admin/salas-admin.component';
 import {Sha512Service} from "./servicios/cripto/sha512.service";
 import {CookieService} from "ngx-cookie-service";
+import { MostrarActividadesComponent } from './componentes/mostrar-actividades/mostrar-actividades.component';
+import { MostrarPropuestasComponent } from './componentes/mostrar-propuestas/mostrar-propuestas.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import {CookieService} from "ngx-cookie-service";
     FooterComponent,
     RegisterComponent,
     SalasAdminComponent,
+    MostrarActividadesComponent,
+    MostrarPropuestasComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,8 @@ import { CrearPropuestaComponent } from './componentes/crear-propuesta/crear-pro
 import { CrearActividadComponent } from './componentes/crear-actividad/crear-actividad.component';
 import { RegisterComponent } from './componentes/register/register.component';
 import { SalasAdminComponent } from './componentes/salas-admin/salas-admin.component';
+import { MostrarActividadesComponent } from './componentes/mostrar-actividades/mostrar-actividades.component';
+import { MostrarPropuestasComponent } from './componentes/mostrar-propuestas/mostrar-propuestas.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'propuesta', component: CrearPropuestaComponent },
   { path: 'actividad', component: CrearActividadComponent },
   { path: 'registrarse', component: RegisterComponent },
+  { path: 'actividades', component: MostrarActividadesComponent },
+  { path: 'propuestas', component: MostrarPropuestasComponent },
 ];
 
 @NgModule({
