@@ -9,12 +9,12 @@
 </div>
 
 <div class="selectSala2" *ngIf="enSala">
-    <p> Entraste a la sala  "{{SalaActiva.nombre}}" espere a que administrador inicie el juego</p>
+    <h4 class="centered-text">Entraste a la sala "{{SalaActiva.nombre}}" espere a que administrador inicie el juego</h4>
 </div>
 
 <div *ngIf="enSala && empezo">
     <div *ngFor="let Actividad of Actividades">
-        <div class="card" *ngIf="Actividades[contador] == Actividad">
+        <div class="card cardConainer" *ngIf="Actividades[contador] == Actividad">
             <div class="card-body">
                 <h5 class="card-title">{{Actividad.titulo}}</h5>
                 <p class="card-text">{{Actividad.descripcion}}</p>
@@ -39,10 +39,11 @@
             </div>
         </div>
     </div>
+    <div class="card" id="activityResult" *ngIf="contador == Actividades.length">
+
     <h5 *ngIf="contador == Actividades.length">Resultados:</h5>
-    <div class="card" *ngIf="contador == Actividades.length">
         <div *ngFor="let Actividad of Actividades; index as i">
-            <div class="card">
+            <div class="card cardConainer">
                 <div class="card-body">
                     <h5 class="card-title">{{Actividad.titulo}}</h5>
                     <p class="card-text">{{Actividad.descripcion}}</p>
