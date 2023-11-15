@@ -1,0 +1,10 @@
+{
+  "defaultProject": "ProyectoFinal",
+  "projects": {
+    "ProyectoFinal": {
+      "name": "ProyectoFinal",
+      "integrations": {},
+      "type": "angular"
+    }
+  }
+}

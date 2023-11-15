@@ -1,24 +1,24 @@
 <app-header></app-header>
 
-<p> Crear Actividad</p>
+<div class="actividadBody">
+    <h5>Crear Actividad</h5>
+    <div class="actividadName">
+        <label for="nombre">Titulo de la actividad:</label>
+        <input #nombre>
+    </div>
 
-<div>
-    <label for="nombre">Titulo de la actividad</label>
-    <input #nombre>
+    <div class="actividadDescripcion">
+        <label for="descripcion">Descripcion de la actividad:</label>
+        <input #descripcion>
+    </div>
+
+    <div class="actividadImagen">
+        <label for="imagen">Imagen de la actividad:</label>
+        <input #imagen>
+    </div>
+
+    <button id="actividadButton" type="button" class="btn btn-danger"  (click)="Actividad(nombre.value, descripcion.value, imagen.value)">Crear</button>
+
 </div>
-
-<div>
-    <label for="descripcion">Descripcion de la actividad</label>
-    <input #descripcion>
-</div>
-
-<div>
-    <label for="imagen">Imagen de la actividad</label>
-    <input #imagen>
-</div>
-
-<button type="button" (click)="Actividad(nombre.value, descripcion.value, imagen.value)">Crear</button>
-
-<p></p>
 
 <app-footer></app-footer>

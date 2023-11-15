@@ -20,6 +20,7 @@ export class SalaComponent implements OnInit{
   empezo: boolean = true
   contador = 0;
   Puntaje: number[] = []
+  MayorPuntaje: number = 0;
 
   constructor(private controlador:ControladorJuegosService, private router: Router, private route:ActivatedRoute){}
 
@@ -41,22 +42,77 @@ export class SalaComponent implements OnInit{
           for (let i = 0; i < largo; i++) {
             this.Puntaje.push(0)
           }
+          this.timer(30);
         }
       }
     }
   }
 
+  mayorPuntaje(){
+    let actGanadoras = []
+    let j = this.Puntaje.length
+    let MPuntaje = 0
+    while (j >= 0){
+      if(this.Puntaje[j] > MPuntaje){
+        actGanadoras =[]
+        actGanadoras.push(this.Actividades[j])
+        MPuntaje = this.Puntaje[j]
+      } else {
+        if (this.Puntaje[j] == MPuntaje){
+          actGanadoras.push(this.Actividades[j])
+        }
+      }
+      j = j-1;
+    }
+    actGanadoras = actGanadoras.reverse()
+    return actGanadoras
+  }
+
+
   votarMegusta(){
+    this.timer(30);
     this.Puntaje[this.contador] = this.Puntaje[this.contador] + 1
     this.contador = this.contador + 1
   }
 
   votarMedaigual(){
+    this.timer(30);
     this.contador = this.contador + 1
   }
 
   votarNoMegusta(){
+    this.timer(30);
     this.Puntaje[this.contador] = this.Puntaje[this.contador] - 1
     this.contador = this.contador + 1
+  }
+
+
+  display: any;
+
+  timer(segundos: number) {
+    // let minute = 1;
+    let seconds: number =  segundos; //minute * 60;
+    let textSec: any = "0";
+    let statSec: number = segundos;
+
+    //const prefix = minute < 10 ? "0" : "";
+
+    const timer = setInterval(() => {
+      seconds--;
+      if (statSec != 0) statSec--;
+      else statSec = 59;
+
+      if (statSec < 10) {
+        textSec = statSec;          //"0" + 
+      } else textSec = statSec;
+
+      this.display = `${textSec}`; //${prefix}${Math.floor(seconds / 60)}:
+
+      if (seconds == 0) {
+        console.log("finished");
+        clearInterval(timer);
+        this.votarMedaigual();
+      }
+    }, 1000);
   }
 }

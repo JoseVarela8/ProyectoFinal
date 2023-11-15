@@ -51,17 +51,7 @@ export class ControladorJuegosService {
   ];
   logueado: boolean = false;
 
-  token: string = ""
-
   constructor(private http:HttpClient, private  cookie:CookieService, private sha:Sha512Service, private auth:AuthService) { }
-
-  setToken(token:string){
-    this.token = token;
-  }
-
-  getToken(){
-    return this.token;
-  }
 
   crearUsuario(nombre: string, contrasenia: string){
     let id = this.usuarios.length + 1;
@@ -96,7 +86,7 @@ export class ControladorJuegosService {
       'accept': '*/*',
       'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`,
       'Content-Type': 'application/json'
-    }
+    } 
     const body = {
       "titulo": `${titulo}`,
       "descripcion": `${descripcion}`
