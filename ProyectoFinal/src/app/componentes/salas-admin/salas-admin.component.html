@@ -8,6 +8,9 @@
 
 <div *ngIf="enSala">
     <p>{{SalaActiva.codigo}}</p>
+    <div *ngFor="let mensaje of mensajes">
+        <p >{{mensaje}}</p>
+    </div>
     <button class="btn btn-danger" (click)="empezarJuego()">Empezar Juego</button>
 </div>
 
