@@ -16,7 +16,7 @@ export class SalasAdminComponent {
   enSala: boolean = false
   linksala: string = ""
   SalaActiva: Juego = new Juego
-  subject = webSocket('ws://localhost:8080/');  //cambiar esto al websocket
+  subject = webSocket('ws://192.168.1.2:3000/');  //cambiar esto al websocket
   mensajes: string[] = []
   
   constructor(private controlador:ControladorJuegosService, private router: Router, private route:ActivatedRoute){}
