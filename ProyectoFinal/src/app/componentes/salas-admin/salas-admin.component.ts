@@ -3,6 +3,9 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Juego } from 'src/app/clases/juego';
 import { ControladorJuegosService } from 'src/app/servicios/controlador-juegos.service';
 
+import { webSocket } from "rxjs/webSocket";
+
+
 @Component({
   selector: 'app-salas-admin',
   templateUrl: './salas-admin.component.html',
@@ -13,10 +16,25 @@ export class SalasAdminComponent {
   enSala: boolean = false
   linksala: string = ""
   SalaActiva: Juego = new Juego
+  subject = webSocket('ws://192.168.1.2:3000/');  //cambiar esto al websocket
+  mensajes: string[] = []
   
   constructor(private controlador:ControladorJuegosService, private router: Router, private route:ActivatedRoute){}
 
   ngOnInit(){
+
+    this.subject.subscribe({
+      next: message => {
+      console.log(JSON.stringify(message));
+      this.mensajes.push(JSON.stringify(message))
+      console.log(this.mensajes.toString)
+      }, 
+      error: error => {
+      console.log(error);
+      }
+    });
+
+    
     this.linksala = this.route.snapshot.params['link'];
     if(this.linksala != undefined){
       this.enSala = true;
@@ -37,6 +55,7 @@ export class SalasAdminComponent {
   }
 
   empezarJuego(){
-    //Ni idea que hacer aca para que empieze.
+    let string = "Admin inicio la sala:" + this.SalaActiva.codigo
+    this.subject.next(string);
   }
 }
