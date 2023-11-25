@@ -9,6 +9,7 @@ import { Sha512Service } from './cripto/sha512.service';
 import { TokenResponse } from '../models/TokenResponse';
 import { crearActividadResponse } from '../models/crearActividadResponse';
 import { AuthService } from './auth/auth.service';
+import { elementAt } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -40,9 +41,11 @@ export class ControladorJuegosService {
     { id:5, titulo: 'actividad 5', descripcion: 'e', imagen:"imagen5" },
   ];
   juegos: Juego[] = [
+    /*
     { id:1, nombre: 'sala1', propuesta: this.propuestas[0], link:"1", codigo:"1234" },
     { id:2, nombre: 'sala2', propuesta: this.propuestas[1], link:"2", codigo:"12345" },
     { id:3, nombre: 'sala3', propuesta: this.propuestas[1], link:"3", codigo:"123456" },
+    */
     //AGREGAR UN JUEGO/SALA
   ];
 
@@ -107,26 +110,42 @@ export class ControladorJuegosService {
   listarPropuestas(){
     return this.propuestas;
   }
-  
+  /*
   crearJuego(prop: Propuesta, nombre:string, link:string, codigo:string){
     let id = this.juegos.length + 1
     let juego = {id, nombre: nombre, propuesta: prop, link, codigo}
     this.juegos.push(juego)
+  }
+  */
+  crearJuego(nombre: string, idactividades: number[]){
+    let ending = "/crearsala";
+    let header = {
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`,
+      'Content-Type': 'application/json'
+    } 
+    const body = {
+      "nombre": `${nombre}`,
+      "idActividades": `${idactividades}`
+    };
+    return this.http.post<crearActividadResponse>(this.API_ENDPOINT+ending, body,{ headers: header});
   }
 
   listarJuegos(){
     return this.juegos;
   }
 
+  
   getJuego(codigo:string){
-    let juego = this.juegos.find(x => x.codigo == codigo);
-    return juego?.link
+    let juego = this.juegos.find(x => x.nombre == codigo);
+    return juego?.nombre
   }
-
+  
   getJuego2(link:string){
-    let juego = this.juegos.find(x => x.link == link);
+    let juego = this.juegos.find(x => x.nombre == link);
     return juego
   }
+
 
   logeado(){
     this.logueado = true;

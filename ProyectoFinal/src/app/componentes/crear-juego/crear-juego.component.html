@@ -7,6 +7,7 @@
         <input #nombre>
     </div>
 
+    <!---->
     <div class="salaLink">
         <label for="descripcion">Link de la sala:</label>
         <input #link>
@@ -22,7 +23,7 @@
 <p></p>
 
 <ng-multiselect-dropdown id="listar"
-  [placeholder]="'Seleccione una propuesta'"
+  [placeholder]="'Seleccione una Actividad'"
   [settings]="dropdownSettings"
   [data]="dropdownList"
   [(ngModel)]="selectedItems"
@@ -31,6 +32,7 @@
 
 <p></p>
 
-<button id="salaButton" class="btn btn-danger" (click)="crearJuego(nombre.value, link.value, codigo.value)">Crear Sala</button>
+<button id="salaButton" class="btn btn-danger" (click)="crearJuego(nombre.value, selectedItems)">Crear Sala</button>
+
 
 <app-footer></app-footer>

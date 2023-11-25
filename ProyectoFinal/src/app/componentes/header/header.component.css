@@ -36,3 +36,24 @@
 .loger button:last-child {
     margin-right: 0; /* Elimina el margen derecho del último botón */
 }
+
+/* Media query para ajustar la distribución de los botones en pantallas más pequeñas */
+@media screen and (max-width: 650px) {
+    .containerHeader{
+        width: 100vp;
+    }
+
+    .menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Cambia a 3 columnas */
+    }
+
+    .menu button {
+        width: 100%; /* Ocupa todo el ancho disponible en la columna */
+        margin-bottom: 5px; /* Agrega un margen inferior entre los botones */
+    }
+
+    .menu button:last-child {
+        margin-bottom: 0; /* Elimina el margen inferior del último botón */
+    }
+}

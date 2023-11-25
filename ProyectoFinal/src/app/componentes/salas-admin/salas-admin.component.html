@@ -2,12 +2,12 @@
 
 <div *ngIf="!enSala">
     <div *ngFor="let Juego of SalasActivas">
-        <button class="btn btn-danger" (click)="irsala(Juego.link)">{{ Juego.nombre }}</button>
+        <button class="btn btn-danger" (click)="irsala(Juego.nombre)">{{ Juego.nombre }}</button>
     </div>
 </div>
 
 <div *ngIf="enSala">
-    <p>{{SalaActiva.codigo}}</p>
+    <p>{{SalaActiva.nombre}}</p>
     <button class="btn btn-danger" (click)="empezarJuego()">Empezar Juego</button>
 </div>
 
