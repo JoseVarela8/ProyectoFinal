@@ -121,7 +121,7 @@ export class ControladorJuegosService {
   ngOnInit() {
     this.actividades
     this.juegos
-    // this.getActividades() PRENDERLO CUANDO CONECTE CON BACK
+    // this.actividades=this.getActividades() PRENDERLO CUANDO CONECTE CON BACK
   }
 
   crearUsuario(nombre: string, contrasenia: string){
