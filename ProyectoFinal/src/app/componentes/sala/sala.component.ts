@@ -15,7 +15,7 @@ export class SalaComponent implements OnInit {
   SalasActivas: Juego[] = []
   SalaActiva: Juego = new Juego
   Actividades: Actividad[] = []
-  empezo: boolean = true //Cambiarlo a false, lo puse en true para probar sin websocket
+  empezo: boolean = false //Cambiarlo a false, lo puse en true para probar sin websocket
   contador = 0;
   Puntaje: number[] = []
   MayorPuntaje: number = 0;

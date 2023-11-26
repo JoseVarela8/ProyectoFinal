@@ -13,6 +13,7 @@ import { enviarVoto } from '../models/enviarVoto';
 import { AuthService } from './auth/auth.service';
 import { elementAt } from 'rxjs';
 import { JActividad } from '../clases/j-actividad';
+import { getRoomsResponse } from '../models/getRoomsResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -119,9 +120,10 @@ export class ControladorJuegosService {
   constructor(private http:HttpClient, private  cookie:CookieService, private sha:Sha512Service, private auth:AuthService) { }
 
   ngOnInit() {
-    this.actividades
-    this.juegos
-    // this.actividades=this.getActividades() PRENDERLO CUANDO CONECTE CON BACK
+    //this.actividades
+    //this.juegos
+    this.allActivities();
+    this.allRooms();
   }
 
   crearUsuario(nombre: string, contrasenia: string){
@@ -168,9 +170,29 @@ export class ControladorJuegosService {
   listarActividades(){
     return this.actividades;
   }
+
+  allActivities(){
+    this.getActividades().subscribe(
+      (response: getActividadesResponse[]) => {
+        this.actividades = response.map((actividadData: any) => {
+          return {
+            id: actividadData.id,
+            titulo: actividadData.titulo,
+            descripcion: actividadData.descripcion,
+            imagen: actividadData.image || '' // Si 'image' puede ser null, asignamos un valor por defecto
+          } as Actividad;
+        });
+        console.log('Actividades obtenidas:', this.actividades);
+      },
+      (error) => {
+        console.error('Error al obtener actividades:', error);
+      }
+    );
+  }
+  
   getActividades(){
     console.log("Cookie: ",this.cookie.get(this.sha.EncryptSHA512("token")));
-    let ending = "actividades";
+    let ending = "actividades/getallactividades";
     let header = {
       'accept': '*/*',
       'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`,
@@ -178,7 +200,7 @@ export class ControladorJuegosService {
     } 
     const body = {
     };
-    return this.http.get<getActividadesResponse>(this.API_ENDPOINT+ending,{ headers: header});
+    return this.http.get<getActividadesResponse[]>(this.API_ENDPOINT+ending,{ headers: header});
   }
   
 
@@ -232,6 +254,38 @@ export class ControladorJuegosService {
 
   listarJuegos(){
     return this.juegos;
+  }
+
+  allRooms(){
+    this.getRooms().subscribe(
+      (response: getRoomsResponse[]) => {
+        this.juegos = response.map((juegoData: any) => {
+          return {
+            nombre: juegoData.nombre,
+            actividades: juegoData.actividades,
+            isOpen: juegoData.isOpen,
+            
+          } as Juego;
+        });
+        console.log('Juegos obtenidos:', this.juegos);
+      },
+      (error) => {
+        console.error('Error al obtener juegos:', error);
+      }
+    );
+  }
+  
+  getRooms(){
+    console.log("Cookie: ",this.cookie.get(this.sha.EncryptSHA512("token")));
+    let ending = "sala/obtenersalas";
+    let header = {
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`,
+      'Content-Type': 'application/json'
+    } 
+    const body = {
+    };
+    return this.http.get<getRoomsResponse[]>(this.API_ENDPOINT+ending,{ headers: header});
   }
 
   
