@@ -10,6 +10,7 @@ import { TokenResponse } from '../models/TokenResponse';
 import { crearActividadResponse } from '../models/crearActividadResponse';
 import { AuthService } from './auth/auth.service';
 import { elementAt } from 'rxjs';
+import { JActividad } from '../clases/j-actividad';
 
 @Injectable({
   providedIn: 'root'
@@ -41,12 +42,71 @@ export class ControladorJuegosService {
     { id:5, titulo: 'actividad 5', descripcion: 'e', imagen:"imagen5" },
   ];
   juegos: Juego[] = [
-    /*
-    { id:1, nombre: 'sala1', propuesta: this.propuestas[0], link:"1", codigo:"1234" },
-    { id:2, nombre: 'sala2', propuesta: this.propuestas[1], link:"2", codigo:"12345" },
-    { id:3, nombre: 'sala3', propuesta: this.propuestas[1], link:"3", codigo:"123456" },
-    */
-    //AGREGAR UN JUEGO/SALA
+    { "isOpen": 0, "nombre": "sala1", "actividades": [
+        {
+          "id_actividad": 1,
+          "votos_negativos": 0,
+          "votos_neutrales": 0,
+          "votos_positivos": 0
+        },
+        {
+          "id_actividad": 2,
+          "votos_negativos": 0,
+          "votos_neutrales": 0,
+          "votos_positivos": 0
+        },
+        {
+          "id_actividad": 3,
+          "votos_negativos": 0,
+          "votos_neutrales": 0,
+          "votos_positivos": 0
+        }
+      ]
+    },
+    {
+      "isOpen": 0, "nombre": "sala2", "actividades": [
+        {
+          "id_actividad": 2,
+          "votos_negativos": 0,
+          "votos_neutrales": 0,
+          "votos_positivos": 0
+        },
+        {
+          "id_actividad": 3,
+          "votos_negativos": 0,
+          "votos_neutrales": 0,
+          "votos_positivos": 0
+        },
+        {
+          "id_actividad": 4,
+          "votos_negativos": 0,
+          "votos_neutrales": 0,
+          "votos_positivos": 0
+        }
+      ]
+    },
+    {
+      "isOpen": 0, "nombre": "sala3", "actividades": [
+        {
+          "id_actividad": 3,
+          "votos_negativos": 0,
+          "votos_neutrales": 0,
+          "votos_positivos": 0
+        },
+        {
+          "id_actividad": 4,
+          "votos_negativos": 0,
+          "votos_neutrales": 0,
+          "votos_positivos": 0
+        },
+        {
+          "id_actividad": 5,
+          "votos_negativos": 0,
+          "votos_neutrales": 0,
+          "votos_positivos": 0
+        }
+      ]
+    },
   ];
 
   usuarios: Usuario[] = [
@@ -106,11 +166,20 @@ export class ControladorJuegosService {
     return this.actividades;
   }
 
-obtenerActividadesPorIds(ids: number[]): Actividad[] {
+  obtenerActividadesPorIds(ids: JActividad[]): Actividad[] {
     // Filtrar los IDs que no sean undefined y convertirlos a número
-    const filteredIds = ids.filter(id => typeof id === 'number') as number[];
+
+    let ides: Number[] = [] 
+
+    for ( let id of ids){
+      if (id.id_actividad != undefined && !ides.includes(id.id_actividad)){
+        ides.push(id.id_actividad)
+      }
+    }
+
+    //const filteredIds = ids.filter(ids. => typeof ids.id_actividad === 'number');
     
-    return this.actividades.filter(actividad => actividad.id != undefined && filteredIds.includes(actividad.id));
+    return this.actividades.filter(actividad => actividad.id != undefined && ides.includes(actividad.id));
   }
 
 
@@ -152,7 +221,11 @@ obtenerActividadesPorIds(ids: number[]): Actividad[] {
   
   getJuego(codigo:string){
     let juego = this.juegos.find(x => x.nombre === codigo);
-    return juego?.nombre; // Suponiendo que hay una propiedad nombreSala en tu objeto juego
+    if (juego == undefined){
+      return undefined
+    } else {
+      return juego?.nombre; // Suponiendo que hay una propiedad nombreSala en tu objeto juego
+    }
   }
   
   getJuego2(link:string){

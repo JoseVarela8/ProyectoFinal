@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { range } from 'rxjs';
-import { Action } from 'rxjs/internal/scheduler/Action';
 import { Actividad } from 'src/app/clases/actividad';
 import { Juego } from 'src/app/clases/juego';
 import { ControladorJuegosService } from 'src/app/servicios/controlador-juegos.service';
@@ -31,6 +29,7 @@ export class SalaComponent implements OnInit{
       this.router.navigate(['sala', nombreSala]);
     } else {
       // Manejo de caso cuando no se encuentra el juego con el código especificado
+      alert("Sala no encontrada")
       console.log("Juego no encontrado");
     }
   }
@@ -42,8 +41,8 @@ export class SalaComponent implements OnInit{
       let variable = this.controlador.getJuego2(this.linksala)
       if (variable != null){
         this.SalaActiva = variable
-        if (this.SalaActiva.idactividades != null){
-          this.Actividades = this.controlador.obtenerActividadesPorIds(this.SalaActiva.idactividades) 
+        if (this.SalaActiva.actividades != null){
+          this.Actividades = this.controlador.obtenerActividadesPorIds(this.SalaActiva.actividades) 
           let largo = this.Actividades.length
           for (let i = 0; i < largo; i++) {
             this.Puntaje.push(0)
