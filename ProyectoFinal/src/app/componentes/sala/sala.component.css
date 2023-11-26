@@ -41,7 +41,7 @@ input {
     margin-left: 331px;
 }
 
-.cardConainer {
+.cardContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;

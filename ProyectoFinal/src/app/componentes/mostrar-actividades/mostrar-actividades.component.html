@@ -1,13 +1,15 @@
 <app-header></app-header>
+<div class="activityGrid">
+    <div *ngFor="let Actividad of Actividades">
 
-<div *ngFor="let Actividad of Actividades">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">{{Actividad.titulo}}</h5>
-            <p class="card-text">{{Actividad.descripcion}}</p>
-            <!-- Imagen-->
+        <div class="card cardConainer">
+            <div class="card-body  activityResult">
+                <h5 class="card-title">{{Actividad.titulo}}</h5>
+                <p class="card-text">{{Actividad.descripcion}}</p>
+            </div>
         </div>
     </div>
+
 </div>
 
 <app-footer></app-footer>

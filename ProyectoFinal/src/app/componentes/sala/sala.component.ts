@@ -17,16 +17,22 @@ export class SalaComponent implements OnInit{
   SalasActivas : Juego[] = []
   SalaActiva: Juego = new Juego
   Actividades : Actividad[] = []
-  empezo: boolean = true
+  empezo: boolean = false
   contador = 0;
   Puntaje: number[] = []
   MayorPuntaje: number = 0;
 
   constructor(private controlador:ControladorJuegosService, private router: Router, private route:ActivatedRoute){}
 
-  ingresar(codigo:string){
-    let link = this.controlador.getJuego(codigo);
-    this.router.navigate(['sala', link])    //cuando haya juegos poner el link
+  ingresar(codigo: string) {
+    console.log("Entraste a ingresar")
+    let nombreSala = this.controlador.getJuego(codigo);
+    if (nombreSala) {
+      this.router.navigate(['sala', nombreSala]);
+    } else {
+      // Manejo de caso cuando no se encuentra el juego con el código especificado
+      console.log("Juego no encontrado");
+    }
   }
 
   ngOnInit(){
@@ -36,8 +42,8 @@ export class SalaComponent implements OnInit{
       let variable = this.controlador.getJuego2(this.linksala)
       if (variable != null){
         this.SalaActiva = variable
-        if (this.SalaActiva.propuesta?.actividades != null){
-          this.Actividades = this.SalaActiva.propuesta?.actividades
+        if (this.SalaActiva.idactividades != null){
+          this.Actividades = this.controlador.obtenerActividadesPorIds(this.SalaActiva.idactividades) 
           let largo = this.Actividades.length
           for (let i = 0; i < largo; i++) {
             this.Puntaje.push(0)

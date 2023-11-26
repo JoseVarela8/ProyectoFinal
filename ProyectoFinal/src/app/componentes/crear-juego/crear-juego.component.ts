@@ -16,23 +16,34 @@ export class CrearJuegoComponent {
   constructor(private controlador:ControladorJuegosService, private router:Router){}
 
   ngOnInit() {
-    this.dropdownList = this.controlador.listarPropuestas();
+    this.dropdownList = this.controlador.listarActividades();
+    console.log("Acta estan las actividades", this.dropdownList)
 
     this.selectedItems = [];
 
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
-      textField: 'nombre',
+      textField: 'titulo',
       allowSearchFilter: true,
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
-      limitSelection: 1,
+      limitSelection: this.dropdownList.length, 
     };
   }
 
-  crearJuego(nombre:string, link:string, codigo:string) {
-    this.controlador.crearJuego(this.selectedItems, nombre, link, codigo)
+  crearJuego(nombre:string, selectedItems: any[]) {
+    console.log("Actividades selec",selectedItems)
+    let idactividades: number [] = [];
+    selectedItems.forEach(item => {
+      if (item.id) {
+        idactividades.push(item.id); // Agregar el id a la variable ids
+      }
+      console.log("ID actividades antes de enviar al controlador: ",idactividades)
+  });
+    this.controlador.crearJuego(nombre, idactividades).subscribe(data =>{
+      alert(data.mensaje)
+    });
     this.router.navigate(["/inicio"])
   }
 }
