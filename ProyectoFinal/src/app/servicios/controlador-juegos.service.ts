@@ -64,7 +64,7 @@ export class ControladorJuegosService {
       ]
     },
     {
-      "isOpen": 0, "nombre": "sala1", "actividades": [
+      "isOpen": 0, "nombre": "sala2", "actividades": [
         {
           "id_actividad": 2,
           "votos_negativos": 0,
@@ -86,7 +86,7 @@ export class ControladorJuegosService {
       ]
     },
     {
-      "isOpen": 0, "nombre": "sala1", "actividades": [
+      "isOpen": 0, "nombre": "sala3", "actividades": [
         {
           "id_actividad": 3,
           "votos_negativos": 0,
@@ -221,7 +221,11 @@ export class ControladorJuegosService {
   
   getJuego(codigo:string){
     let juego = this.juegos.find(x => x.nombre === codigo);
-    return juego?.nombre; // Suponiendo que hay una propiedad nombreSala en tu objeto juego
+    if (juego == undefined){
+      return undefined
+    } else {
+      return juego?.nombre; // Suponiendo que hay una propiedad nombreSala en tu objeto juego
+    }
   }
   
   getJuego2(link:string){
