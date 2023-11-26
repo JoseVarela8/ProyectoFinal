@@ -42,8 +42,8 @@ export class SalaComponent implements OnInit{
       let variable = this.controlador.getJuego2(this.linksala)
       if (variable != null){
         this.SalaActiva = variable
-        if (this.SalaActiva.idactividades != null){
-          this.Actividades = this.controlador.obtenerActividadesPorIds(this.SalaActiva.idactividades) 
+        if (this.SalaActiva.actividades != null){
+          this.Actividades = this.controlador.obtenerActividadesPorIds(this.SalaActiva.actividades) 
           let largo = this.Actividades.length
           for (let i = 0; i < largo; i++) {
             this.Puntaje.push(0)

@@ -1,7 +1,7 @@
-import { Actividad } from "./actividad";
-import { Propuesta } from "./propuesta";
+import { JActividad } from "./j-actividad";
 
 export class Juego {
     nombre: string | undefined;
-    idactividades: number [] | undefined;
+    actividades: JActividad [] | undefined;
+    isOpen: number | undefined;
 }
