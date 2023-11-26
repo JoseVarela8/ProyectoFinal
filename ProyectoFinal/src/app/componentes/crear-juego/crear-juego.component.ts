@@ -17,26 +17,29 @@ export class CrearJuegoComponent {
 
   ngOnInit() {
     this.dropdownList = this.controlador.listarActividades();
+    console.log("Acta estan las actividades", this.dropdownList)
 
     this.selectedItems = [];
 
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
-      textField: 'nombre',
+      textField: 'titulo',
       allowSearchFilter: true,
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
-      limitSelection: 1,
+      limitSelection: this.dropdownList.length, 
     };
   }
 
   crearJuego(nombre:string, selectedItems: any[]) {
+    console.log("Actividades selec",selectedItems)
     let idactividades: number [] = [];
     selectedItems.forEach(item => {
       if (item.id) {
         idactividades.push(item.id); // Agregar el id a la variable ids
       }
+      console.log("ID actividades antes de enviar al controlador: ",idactividades)
   });
     this.controlador.crearJuego(nombre, idactividades).subscribe(data =>{
       alert(data.mensaje)

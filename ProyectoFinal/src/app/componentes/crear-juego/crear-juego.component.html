@@ -7,7 +7,7 @@
         <input #nombre>
     </div>
 
-    <!---->
+    <!--
     <div class="salaLink">
         <label for="descripcion">Link de la sala:</label>
         <input #link>
@@ -18,14 +18,17 @@
         <input #codigo>
     </div>
 
+    -->
+
 </div>
 
 <p></p>
 
 <ng-multiselect-dropdown id="listar"
-  [placeholder]="'Seleccione una Actividad'"
+  
   [settings]="dropdownSettings"
   [data]="dropdownList"
+  [placeholder]="'Seleccione una Actividad'"
   [(ngModel)]="selectedItems"
 >
 </ng-multiselect-dropdown>

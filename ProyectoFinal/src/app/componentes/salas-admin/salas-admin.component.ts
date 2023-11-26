@@ -55,7 +55,7 @@ export class SalasAdminComponent {
   }
 
   empezarJuego(){
-    let string = "Admin inicio la sala:" + this.SalaActiva.codigo
+    let string = "Admin inicio la sala:" + this.SalaActiva.nombre
     this.subject.next(string);
   }
 }

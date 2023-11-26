@@ -56,6 +56,11 @@ export class ControladorJuegosService {
 
   constructor(private http:HttpClient, private  cookie:CookieService, private sha:Sha512Service, private auth:AuthService) { }
 
+  ngOnInit() {
+    this.actividades
+    this.juegos
+  }
+
   crearUsuario(nombre: string, contrasenia: string){
     let id = this.usuarios.length + 1;
     let usuario = {id, nombre, contrasenia}
@@ -101,6 +106,14 @@ export class ControladorJuegosService {
     return this.actividades;
   }
 
+obtenerActividadesPorIds(ids: number[]): Actividad[] {
+    // Filtrar los IDs que no sean undefined y convertirlos a número
+    const filteredIds = ids.filter(id => typeof id === 'number') as number[];
+    
+    return this.actividades.filter(actividad => actividad.id != undefined && filteredIds.includes(actividad.id));
+  }
+
+
   crearPropuesta(actividades: Actividad[], nombre:string){
     let id = this.propuestas.length + 1
     let propuesta = {id, nombre, actividades}
@@ -118,7 +131,8 @@ export class ControladorJuegosService {
   }
   */
   crearJuego(nombre: string, idactividades: number[]){
-    let ending = "/crearsala";
+    console.log("ID actividades creando juego en controlador",idactividades)
+    let ending = "crearsala";
     let header = {
       'accept': '*/*',
       'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`,
@@ -137,8 +151,8 @@ export class ControladorJuegosService {
 
   
   getJuego(codigo:string){
-    let juego = this.juegos.find(x => x.nombre == codigo);
-    return juego?.nombre
+    let juego = this.juegos.find(x => x.nombre === codigo);
+    return juego?.nombre; // Suponiendo que hay una propiedad nombreSala en tu objeto juego
   }
   
   getJuego2(link:string){
