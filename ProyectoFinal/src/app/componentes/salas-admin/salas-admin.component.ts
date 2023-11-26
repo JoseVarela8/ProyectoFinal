@@ -16,7 +16,7 @@ export class SalasAdminComponent {
   enSala: boolean = false
   linksala: string = ""
   SalaActiva: Juego = new Juego
-  subject = webSocket('ws://192.168.1.2:3000/');  //cambiar esto al websocket
+  subject = webSocket(this.controlador.getip());  //cambiar esto al websocket
   mensajes: string[] = []
   
   constructor(private controlador:ControladorJuegosService, private router: Router, private route:ActivatedRoute){}
@@ -25,9 +25,7 @@ export class SalasAdminComponent {
 
     this.subject.subscribe({
       next: message => {
-      console.log(JSON.stringify(message));
       this.mensajes.push(JSON.stringify(message))
-      console.log(this.mensajes.toString)
       }, 
       error: error => {
       console.log(error);

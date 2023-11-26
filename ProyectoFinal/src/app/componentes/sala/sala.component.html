@@ -8,7 +8,7 @@
     <button id="salaButton" class="btn btn-danger" (click)="ingresar(codigo.value)"> Ingresar</button>
 </div>
 
-<div class="selectSala2" *ngIf="enSala">
+<div class="selectSala2" *ngIf="enSala && !empezo">
     <h4 class="centered-text">Entraste a la sala "{{SalaActiva.nombre}}" espere a que administrador inicie el juego</h4>
 </div>
 

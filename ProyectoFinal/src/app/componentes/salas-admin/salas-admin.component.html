@@ -8,7 +8,8 @@
 
 <div *ngIf="enSala">
 
-    <p>{{SalaActiva.nombre}}</p>
+    <h5>Nombre de la sala: {{SalaActiva.nombre}}</h5>
+    <h5>Log de mensajes: </h5>
     <div *ngFor="let mensaje of mensajes">
         <p >{{mensaje}}</p>
     </div>

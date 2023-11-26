@@ -6,10 +6,8 @@ import { Usuario } from '../clases/usuario';
 import { HttpClient } from '@angular/common/http';
 import {CookieService} from "ngx-cookie-service";
 import { Sha512Service } from './cripto/sha512.service';
-import { TokenResponse } from '../models/TokenResponse';
 import { crearActividadResponse } from '../models/crearActividadResponse';
 import { AuthService } from './auth/auth.service';
-import { elementAt } from 'rxjs';
 import { JActividad } from '../clases/j-actividad';
 
 @Injectable({
@@ -244,6 +242,12 @@ export class ControladorJuegosService {
 
   desloguearse(){
     this.logueado = false;
+  }
+  
+  ip: string = 'ws://192.168.1.2:3000/'
+
+  getip(){
+    return this.ip
   }
 
 }
