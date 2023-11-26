@@ -1,19 +1,23 @@
 <app-header></app-header>
 
-<div *ngIf="!enSala">
-    <div *ngFor="let Juego of SalasActivas">
-        <button class="btn btn-danger" (click)="irsala(Juego.nombre)">{{ Juego.nombre }}</button>
-    </div>
-</div>
+<div class="mainContent">
 
-<div *ngIf="enSala">
-
-    <p>{{SalaActiva.nombre}}</p>
-    <div *ngFor="let mensaje of mensajes">
-        <p >{{mensaje}}</p>
+    <div class="informativeCard" *ngIf="!enSala">
+        <div class="salas" *ngFor="let Juego of SalasActivas">
+            <button class="btn btn-danger botonSala" (click)="irsala(Juego.nombre)">{{ Juego.nombre }}</button>
+        </div>
     </div>
 
-    <button class="btn btn-danger" (click)="empezarJuego()">Empezar Juego</button>
+    <div class="informativeCard" *ngIf="enSala">
+        <div class="infoTitle">
+            <h5>{{SalaActiva.nombre}}</h5>
+        </div>
+        <div *ngFor="let mensaje of mensajes">
+            <p>{{mensaje}}</p>
+        </div>
+
+        <button class="btn btn-danger" (click)="empezarJuego()">Empezar Juego</button>
+    </div>
 </div>
 
 <app-footer></app-footer>

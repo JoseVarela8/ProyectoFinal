@@ -8,6 +8,8 @@ import {CookieService} from "ngx-cookie-service";
 import { Sha512Service } from './cripto/sha512.service';
 import { TokenResponse } from '../models/TokenResponse';
 import { crearActividadResponse } from '../models/crearActividadResponse';
+import { getActividadesResponse } from '../models/getActividadesRespones';
+import { enviarVoto } from '../models/enviarVoto';
 import { AuthService } from './auth/auth.service';
 import { elementAt } from 'rxjs';
 import { JActividad } from '../clases/j-actividad';
@@ -119,6 +121,7 @@ export class ControladorJuegosService {
   ngOnInit() {
     this.actividades
     this.juegos
+    // this.getActividades() PRENDERLO CUANDO CONECTE CON BACK
   }
 
   crearUsuario(nombre: string, contrasenia: string){
@@ -165,6 +168,19 @@ export class ControladorJuegosService {
   listarActividades(){
     return this.actividades;
   }
+  getActividades(){
+    console.log("Cookie: ",this.cookie.get(this.sha.EncryptSHA512("token")));
+    let ending = "actividades";
+    let header = {
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`,
+      'Content-Type': 'application/json'
+    } 
+    const body = {
+    };
+    return this.http.get<getActividadesResponse>(this.API_ENDPOINT+ending,{ headers: header});
+  }
+  
 
   obtenerActividadesPorIds(ids: JActividad[]): Actividad[] {
     // Filtrar los IDs que no sean undefined y convertirlos a número
@@ -201,7 +217,7 @@ export class ControladorJuegosService {
   */
   crearJuego(nombre: string, idactividades: number[]){
     console.log("ID actividades creando juego en controlador",idactividades)
-    let ending = "crearsala";
+    let ending = "sala/crearsala";
     let header = {
       'accept': '*/*',
       'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`,
@@ -245,5 +261,24 @@ export class ControladorJuegosService {
   desloguearse(){
     this.logueado = false;
   }
+
+  enviarVoto(nombreSala: string, nombreActividad: number, voto: number) {
+    const ending = 'sala/votaractividad';
+  
+    const header = {
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512('token'))}`,
+      'Content-Type': 'application/json'
+    };
+  
+    const body = {
+      "nombreSala": nombreSala,
+      "nombreActividad": nombreActividad,
+      "voto": voto
+    };
+  
+    return this.http.post<enviarVoto>(this.API_ENDPOINT + ending, body, { headers: header });
+  }
+  
 
 }
