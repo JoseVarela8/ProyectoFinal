@@ -18,6 +18,7 @@ export class SalasAdminComponent {
   SalaActiva: Juego = new Juego
   subject = webSocket(this.controlador.getip());  //cambiar esto al websocket
   mensajes: string[] = []
+  mensajesviejos: string[] = []
   
   constructor(private controlador:ControladorJuegosService, private router: Router, private route:ActivatedRoute){}
 
@@ -41,10 +42,34 @@ export class SalasAdminComponent {
         this.SalaActiva = variable
       }
     } else{
+      this.SalasActivas = this.controlador.listarJuegos()
+      /*
       this.controlador.listarJuegos().subscribe(res => {
         this.SalasActivas = res;
         console.log(this.SalasActivas)
-      });
+      });*/
+    }
+  }
+
+  mirar() {
+    if (this.mensajes != this.mensajesviejos) {
+      this.onVariableChange();
+      this.mensajesviejos = Object.assign({}, this.mensajes);
+      return(true)
+    } else {
+      return(false)
+    }
+  }
+
+  onVariableChange() {
+    let last: any = this.mensajes[this.mensajes.length - 1]; 
+    var sliced = last.slice(0, 20); 
+    console.log(sliced);
+    if (last == `{"message":"Votos usuario: }`) {
+      console.log("llegue")
+    } else {
+      console.log("fallo")
+      //console.log("fallo", last, " es distinto de ",`{"message":"Admin inicio la sala:${this.SalaActiva.nombre}"}` )
     }
   }
 
@@ -56,7 +81,8 @@ export class SalasAdminComponent {
   }
 
   empezarJuego(){
-    let string = "Admin inicio la sala:" + this.SalaActiva.nombre
+    //let string = "Admin inicio la sala:" + this.SalaActiva.nombre
+    let string = "Admin inicio la sala:" + "salatest"
     this.subject.next(string);
   }
 }

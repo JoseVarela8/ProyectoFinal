@@ -18,7 +18,7 @@ export class SalaComponent implements OnInit{
   SalaActiva: Juego = new Juego
   Actividades : Actividad[] = []
   empezo: boolean = false
-  contador = 0;
+  contador = -1;
   Puntaje: number[] = []
   MayorPuntaje: number = 0;
 
@@ -28,13 +28,20 @@ export class SalaComponent implements OnInit{
 
   constructor(private controlador:ControladorJuegosService, private router: Router, private route:ActivatedRoute){}
 
-  ingresar(codigo: string) {
-    console.log("Entraste a ingresar")
-    let nombreSala = this.controlador.getJuego(codigo);
-    if (nombreSala) {
-      let string = "Usuario entro a la sala:" + nombreSala
+  async ingresar(codigo: string) {
+    let nombreSala: Juego = { "isOpen": undefined, "nombre": undefined, "actividades": undefined}
+    await new Promise<void>((resolve) => {
+      this.controlador.getJuego(codigo).subscribe(res => {
+        nombreSala = res;  
+        console.log(nombreSala);
+        resolve();
+      });
+    });
+  
+    if (nombreSala.nombre != undefined) {
+      let string = "Usuario entro a la sala: " + nombreSala.nombre;
       this.subject.next(string);
-      this.router.navigate(['sala', nombreSala]);
+      this.router.navigate(['sala', nombreSala.nombre]);
     } else {
       // Manejo de caso cuando no se encuentra el juego con el código especificado
       alert("Sala no encontrada")
@@ -58,10 +65,9 @@ export class SalaComponent implements OnInit{
     this.linksala = this.route.snapshot.params['link'];
     if(this.linksala != undefined){
       this.enSala = true;
-      let variable = this.controlador.getJuego2(this.linksala)
-      if (variable != null){
-        this.SalaActiva = variable
-      }
+      this.controlador.getJuego(this.linksala).subscribe(res => {
+        this.SalaActiva = res;
+      });
     }
   }
 
@@ -75,24 +81,36 @@ export class SalaComponent implements OnInit{
     }
   }
 
-  onVariableChange(){
-    let last:any = this.mensajes[this.mensajes.length-1];
-    if (last == `{"message":"Admin inicio la sala:${this.SalaActiva.nombre}"}`){
-      this.empezo = true
-      if (this.SalaActiva.actividades != null){
-        this.Actividades = this.controlador.obtenerActividadesPorIds(this.SalaActiva.actividades) 
-        let largo = this.Actividades.length
-        for (let i = 0; i < largo; i++) {
-          this.Puntaje.push(0)
-        }
-        this.timer(30);
+  onVariableChange() {
+    let last: any = this.mensajes[this.mensajes.length - 1];
+    if (last == `{"message":"Admin inicio la sala:${this.SalaActiva.nombre}"}`) {
+      this.empezo = true;
+      if (this.SalaActiva.actividades != null) {
+        this.controlador.obtenerActividadesPorIds(this.SalaActiva.actividades)
+          .then((actividades: Actividad[]) => {
+            this.Actividades = actividades;
+            let largo = this.Actividades.length;
+            for (let i = 0; i < largo; i++) {
+              this.Puntaje.push(0);
+            }
+            this.contador = 0;
+            this.timer(30);
+          });
       }
     } else {
-      console.log("fallo", last, " es distinto de ",`{"message":"Admin inicio la sala:${this.SalaActiva.nombre}"}` )
+      //console.log("fallo", last, " es distinto de ",`{"message":"Admin inicio la sala:${this.SalaActiva.nombre}"}` )
     }
   }
 
+  Envio = false
+
   mayorPuntaje(){
+    if (this.SalaActiva.actividades != undefined && this.SalaActiva.actividades?.length > 1 
+        && this.contador == this.Puntaje.length && !this.Envio){
+      let string = "Votos usuario: " + this.Puntaje.toString();
+      this.subject.next(string);
+      this.Envio = true
+    }
     let actGanadoras = []
     let j = this.Puntaje.length
     let MPuntaje = 0
@@ -160,7 +178,6 @@ export class SalaComponent implements OnInit{
       this.display = `${textSec}`; //${prefix}${Math.floor(seconds / 60)}:
 
       if (seconds == 0) {
-        console.log("finished");
         clearInterval(timer);
         if (this.contador < this.Actividades.length){
           this.votarMedaigual();

@@ -9,6 +9,7 @@ import { Sha512Service } from './cripto/sha512.service';
 import { crearActividadResponse } from '../models/crearActividadResponse';
 import { AuthService } from './auth/auth.service';
 import { JActividad } from '../clases/j-actividad';
+import { waitForAsync } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -115,8 +116,8 @@ export class ControladorJuegosService {
   constructor(private http:HttpClient, private  cookie:CookieService, private sha:Sha512Service, private auth:AuthService) { }
 
   ngOnInit() {
-    this.actividades    //no tocar
-    this.juegos
+      //no tocar
+    //this.juegos
   }
 
   crearUsuario(nombre: string, contrasenia: string){
@@ -169,8 +170,21 @@ export class ControladorJuegosService {
     return this.http.get<Actividad[]>(this.API_ENDPOINT+ending,{ headers: header})  //ta checkeado
   }
 
-  obtenerActividadesPorIds(ids: JActividad[]): Actividad[] {
+  async obtenerActividadesPorIds(ids: JActividad[]): Promise<Actividad[]> {
     // Filtrar los IDs que no sean undefined y convertirlos a número
+    /*let usuario = "root"
+    let contrasenia = "password"
+    this.auth.obtenerTokenAdmin(usuario,contrasenia).subscribe(data =>{
+      this.cookie.set(this.sha.EncryptSHA512("token"), data.token);  //this.sha.EncryptSHA512(data.token)
+      //alert(`Token: ${data.token}`);
+    });*/
+    
+    await new Promise<void>((resolve) => {
+      this.listarActividades().subscribe(res => {
+        this.actividades = res;
+        resolve();
+      });
+    });
 
     let ides: Number[] = [] 
 
@@ -196,7 +210,7 @@ export class ControladorJuegosService {
     return this.propuestas;   //no tocar
   }
 
-  
+
   /*
   crearJuego(prop: Propuesta, nombre:string, link:string, codigo:string){
     let id = this.juegos.length + 1
@@ -220,23 +234,37 @@ export class ControladorJuegosService {
   }
 
   listarJuegos(){
-    let ending = "sala/obtenersala";
+    return this.juegos;
+    
+    //let ending = "sala/obtenersala";
+    //let header = {
+    //  'accept': '*/*',
+    //  'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`
+    //} 
+    //return this.http.get<Juego[]>(this.API_ENDPOINT+ending,{ headers: header}) //falta checkear
+  }
+
+
+  getJuego(nombre:string){
+    /*let juego = this.juegos.find(x => x.nombre === codigo);
+    if (juego == undefined){
+      return undefined
+    } else {
+      return juego?.nombre; //hacer el obtener sala aca con nombre
+    }*/
+    let usuario = "root"
+    let contrasenia = "password"
+    this.auth.obtenerTokenAdmin(usuario,contrasenia).subscribe(data =>{
+      this.cookie.set(this.sha.EncryptSHA512("token"), data.token);  //this.sha.EncryptSHA512(data.token)
+      //alert(`Token: ${data.token}`);
+    });
+    let ending = "sala/obtenersala/"+nombre;
+    console.log(this.API_ENDPOINT+ending)
     let header = {
       'accept': '*/*',
       'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`
     } 
-    return this.http.get<Juego[]>(this.API_ENDPOINT+ending,{ headers: header}) //falta checkear
-    //return this.juegos;
-  }
-
-  
-  getJuego(codigo:string){
-    let juego = this.juegos.find(x => x.nombre === codigo);
-    if (juego == undefined){
-      return undefined
-    } else {
-      return juego?.nombre; // Suponiendo que hay una propiedad nombreSala en tu objeto juego
-    }
+    return this.http.get<Juego>(this.API_ENDPOINT+ending,{ headers: header})  //ta checkeado
   }
   
   getJuego2(link:string){
