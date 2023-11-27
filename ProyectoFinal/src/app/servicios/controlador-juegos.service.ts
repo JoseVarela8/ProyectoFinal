@@ -8,9 +8,12 @@ import {CookieService} from "ngx-cookie-service";
 import { Sha512Service } from './cripto/sha512.service';
 import { TokenResponse } from '../models/TokenResponse';
 import { crearActividadResponse } from '../models/crearActividadResponse';
+import { getActividadesResponse } from '../models/getActividadesRespones';
+import { enviarVoto } from '../models/enviarVoto';
 import { AuthService } from './auth/auth.service';
 import { elementAt } from 'rxjs';
 import { JActividad } from '../clases/j-actividad';
+import { getRoomsResponse } from '../models/getRoomsResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -117,8 +120,10 @@ export class ControladorJuegosService {
   constructor(private http:HttpClient, private  cookie:CookieService, private sha:Sha512Service, private auth:AuthService) { }
 
   ngOnInit() {
-    this.actividades
-    this.juegos
+    //this.actividades
+    //this.juegos
+    this.allActivities();
+    this.allRooms();
   }
 
   crearUsuario(nombre: string, contrasenia: string){
@@ -166,6 +171,39 @@ export class ControladorJuegosService {
     return this.actividades;
   }
 
+  allActivities(){
+    this.getActividades().subscribe(
+      (response: getActividadesResponse[]) => {
+        this.actividades = response.map((actividadData: any) => {
+          return {
+            id: actividadData.id,
+            titulo: actividadData.titulo,
+            descripcion: actividadData.descripcion,
+            imagen: actividadData.image || '' // Si 'image' puede ser null, asignamos un valor por defecto
+          } as Actividad;
+        });
+        console.log('Actividades obtenidas:', this.actividades);
+      },
+      (error) => {
+        console.error('Error al obtener actividades:', error);
+      }
+    );
+  }
+  
+  getActividades(){
+    console.log("Cookie: ",this.cookie.get(this.sha.EncryptSHA512("token")));
+    let ending = "actividades/getallactividades";
+    let header = {
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`,
+      'Content-Type': 'application/json'
+    } 
+    const body = {
+    };
+    return this.http.get<getActividadesResponse[]>(this.API_ENDPOINT+ending,{ headers: header});
+  }
+  
+
   obtenerActividadesPorIds(ids: JActividad[]): Actividad[] {
     // Filtrar los IDs que no sean undefined y convertirlos a número
 
@@ -201,7 +239,7 @@ export class ControladorJuegosService {
   */
   crearJuego(nombre: string, idactividades: number[]){
     console.log("ID actividades creando juego en controlador",idactividades)
-    let ending = "crearsala";
+    let ending = "sala/crearsala";
     let header = {
       'accept': '*/*',
       'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`,
@@ -216,6 +254,38 @@ export class ControladorJuegosService {
 
   listarJuegos(){
     return this.juegos;
+  }
+
+  allRooms(){
+    this.getRooms().subscribe(
+      (response: getRoomsResponse[]) => {
+        this.juegos = response.map((juegoData: any) => {
+          return {
+            nombre: juegoData.nombre,
+            actividades: juegoData.actividades,
+            isOpen: juegoData.isOpen,
+            
+          } as Juego;
+        });
+        console.log('Juegos obtenidos:', this.juegos);
+      },
+      (error) => {
+        console.error('Error al obtener juegos:', error);
+      }
+    );
+  }
+  
+  getRooms(){
+    console.log("Cookie: ",this.cookie.get(this.sha.EncryptSHA512("token")));
+    let ending = "sala/obtenersalas";
+    let header = {
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`,
+      'Content-Type': 'application/json'
+    } 
+    const body = {
+    };
+    return this.http.get<getRoomsResponse[]>(this.API_ENDPOINT+ending,{ headers: header});
   }
 
   
@@ -245,5 +315,24 @@ export class ControladorJuegosService {
   desloguearse(){
     this.logueado = false;
   }
+
+  enviarVoto(nombreSala: string, nombreActividad: number, voto: number) {
+    const ending = 'sala/votaractividad';
+  
+    const header = {
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512('token'))}`,
+      'Content-Type': 'application/json'
+    };
+  
+    const body = {
+      "nombreSala": nombreSala,
+      "nombreActividad": nombreActividad,
+      "voto": voto
+    };
+  
+    return this.http.post<enviarVoto>(this.API_ENDPOINT + ending, body, { headers: header });
+  }
+  
 
 }

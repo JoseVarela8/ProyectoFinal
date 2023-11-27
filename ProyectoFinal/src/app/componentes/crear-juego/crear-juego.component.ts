@@ -17,7 +17,7 @@ export class CrearJuegoComponent {
 
   ngOnInit() {
     this.dropdownList = this.controlador.listarActividades();
-    console.log("Acta estan las actividades", this.dropdownList)
+    //this.dropdownList = this.controlador.getActividades();    HAY QUE PONER ESTA FUNCION CUANDO ESTE CONECTADO AL BACK
 
     this.selectedItems = [];
 
