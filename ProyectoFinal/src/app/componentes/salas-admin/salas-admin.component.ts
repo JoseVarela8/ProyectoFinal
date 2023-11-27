@@ -41,7 +41,10 @@ export class SalasAdminComponent {
         this.SalaActiva = variable
       }
     } else{
-      this.SalasActivas = this.controlador.listarJuegos()
+      this.controlador.listarJuegos().subscribe(res => {
+        this.SalasActivas = res;
+        console.log(this.SalasActivas)
+      });
     }
   }
 

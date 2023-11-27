@@ -16,6 +16,8 @@ export class MostrarActividadesComponent {
   }
 
   ngOnInit(){
-    this.Actividades = this.controlador.listarActividades()
+    this.controlador.listarActividades().subscribe(res => {
+      this.Actividades = res;
+    });
   }
 }

@@ -108,20 +108,20 @@ export class ControladorJuegosService {
   ];
 
   usuarios: Usuario[] = [
-    { id:1, nombre: 'Nico', contrasenia: '1234'},
+    { id:1, nombre: 'Nico', contrasenia: '1234'},     //no tocar
   ];
-  logueado: boolean = false;
+  logueado: boolean = false;      //no tocar
 
   constructor(private http:HttpClient, private  cookie:CookieService, private sha:Sha512Service, private auth:AuthService) { }
 
   ngOnInit() {
-    this.actividades
+    this.actividades    //no tocar
     this.juegos
   }
 
   crearUsuario(nombre: string, contrasenia: string){
-    let id = this.usuarios.length + 1;
-    let usuario = {id, nombre, contrasenia}
+    let id = this.usuarios.length + 1;  
+    let usuario = {id, nombre, contrasenia}       //no tocar
     this.usuarios.push(usuario)
   }
 
@@ -130,14 +130,14 @@ export class ControladorJuegosService {
     if (encontro!=null){
       this.logueado=true;
       return true
-    }
+    }                     //no tocar
     else{
       return false
     }
    }
 
   listarUsuario(){
-    return this.usuarios;
+    return this.usuarios; //no tocar
   }
 
   
@@ -157,11 +157,16 @@ export class ControladorJuegosService {
       "titulo": `${titulo}`,
       "descripcion": `${descripcion}`
     };
-    return this.http.post<crearActividadResponse>(this.API_ENDPOINT+ending, body,{ headers: header});
+    return this.http.post<crearActividadResponse>(this.API_ENDPOINT+ending, body,{ headers: header}); //ta checkeado
   }
 
   listarActividades(){
-    return this.actividades;
+    let ending = "actividades/getallactividades";
+    let header = {
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`
+    } 
+    return this.http.get<Actividad[]>(this.API_ENDPOINT+ending,{ headers: header})  //ta checkeado
   }
 
   obtenerActividadesPorIds(ids: JActividad[]): Actividad[] {
@@ -183,13 +188,15 @@ export class ControladorJuegosService {
 
   crearPropuesta(actividades: Actividad[], nombre:string){
     let id = this.propuestas.length + 1
-    let propuesta = {id, nombre, actividades}
+    let propuesta = {id, nombre, actividades}  //no tocar
     this.propuestas.push(propuesta)
   }
 
   listarPropuestas(){
-    return this.propuestas;
+    return this.propuestas;   //no tocar
   }
+
+  
   /*
   crearJuego(prop: Propuesta, nombre:string, link:string, codigo:string){
     let id = this.juegos.length + 1
@@ -198,22 +205,28 @@ export class ControladorJuegosService {
   }
   */
   crearJuego(nombre: string, idactividades: number[]){
-    console.log("ID actividades creando juego en controlador",idactividades)
-    let ending = "crearsala";
+    let ending = "sala/crearsala";
     let header = {
       'accept': '*/*',
       'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`,
       'Content-Type': 'application/json'
     } 
-    const body = {
-      "nombre": `${nombre}`,
-      "idActividades": `${idactividades}`
-    };
-    return this.http.post<crearActividadResponse>(this.API_ENDPOINT+ending, body,{ headers: header});
+    const body = 
+    {
+      "nombresala": `${nombre}`,
+      "actividadesSeleccionadas": idactividades
+    }
+    return this.http.post<crearActividadResponse>(this.API_ENDPOINT+ending, body,{ headers: header}); //ta checkeado
   }
 
   listarJuegos(){
-    return this.juegos;
+    let ending = "sala/obtenersala";
+    let header = {
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.cookie.get(this.sha.EncryptSHA512("token"))}`
+    } 
+    return this.http.get<Juego[]>(this.API_ENDPOINT+ending,{ headers: header}) //falta checkear
+    //return this.juegos;
   }
 
   
@@ -233,15 +246,15 @@ export class ControladorJuegosService {
 
 
   logeado(){
-    this.logueado = true;
+    this.logueado = true; //no tocar
   }
 
   checkAdminInit(){
-    return this.logueado;
+    return this.logueado; //no tocar
   }
 
   desloguearse(){
-    this.logueado = false;
+    this.logueado = false;    //no tocar
   }
   
   ip: string = 'ws://192.168.1.2:3000/'

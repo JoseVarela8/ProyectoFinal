@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Actividad } from 'src/app/clases/actividad';
 import { Juego } from 'src/app/clases/juego';
@@ -26,7 +26,7 @@ export class SalaComponent implements OnInit{
   mensajes: string[] = []
   mensajesviejos: string[] = []
 
-  constructor(private cdr: ChangeDetectorRef, private controlador:ControladorJuegosService, private router: Router, private route:ActivatedRoute){}
+  constructor(private controlador:ControladorJuegosService, private router: Router, private route:ActivatedRoute){}
 
   ingresar(codigo: string) {
     console.log("Entraste a ingresar")
